@@ -7,16 +7,28 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a class="navbar-brand" href="/"><i class="bi-house-fill"></i></a>
+          <RouterLink class="navbar-brand" to="/"><i class="bi-house-fill"></i></RouterLink>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link my-focus" id="home" href="/">Home</a>
+              <RouterLink class="nav-link my-focus" id="home" to="/">Home</RouterLink>
             </li>
             <li class="nav-item">
-              <a class="nav-link my-focus" id="about" href="/about">About</a>
+              <RouterLink class="nav-link my-focus" id="about" to="/about">About</RouterLink>
             </li>
             <li class="nav-item">
-              <a class="nav-link my-focus" id="modules" href="/diagnosis">diagnosis</a>
+              <RouterLink class="nav-link my-focus" id="modules" to="/diagnosis">diagnosis</RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink v-if="$route.params.name !== undefined" class="nav-link my-focus" id="modules"
+                :to='"/diagnosis/" + $route.params.name'>Diagnosis by
+                patients
+              </RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink v-if="$route.params.name !== undefined" class="nav-link my-focus" id="modules"
+                :to="'/diagnosis/graphics/' + $route.params.name">
+                Graphics by patients
+              </RouterLink>
             </li>
           </ul>
           <div v-if="loggedIn == true" class="d-flex myFlex">
@@ -25,7 +37,6 @@
               <li class="nav-item dropdown">
                 <a href="/login" class="welcome change" title="Options" data-bs-toggle="dropdown" aria-expanded="false">
                   <!--<img src="./assets/user.png" height="40" width="35" style="border-radius: 50%" />-->
-
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg-end mt-3">
                   <li>
@@ -55,13 +66,11 @@
   </div>
 </template>
 <script setup lang="ts">
-
 import { onMounted, ref } from 'vue'
 //const route = useRoute()
 let loggedIn = ref(false)
 let email = ref('')
-onMounted(async () => {
-})
+onMounted(async () => { })
 </script>
 
 <style></style>

@@ -1,4 +1,9 @@
-import './assets/main.css'
+import './assets/generics.css'
+
+import 'bootstrap'
+
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '../node_modules/bootstrap-icons/font/bootstrap-icons.min.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
