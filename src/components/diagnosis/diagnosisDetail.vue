@@ -45,7 +45,7 @@
                       id="observation" placeholder="" />
                     <small>{{
                       dataObject.treatment.length + ' ' + 'de' + ' ' + 2083 + ' ' + 'caracteres'
-                    }}</small>
+                      }}</small>
                     <small v-if="
                       fields.validateTreatment === '' || fields.validateTreatment === 'Opcional'
                     " class="text-alert-optional">
@@ -148,6 +148,7 @@ const _editTreatment = async () => {
       message.warning = ''
       setTimeout(async () => {
         message.success = ''
+        location.reload()
       }, 1500)
       //router.back()
     } else {
