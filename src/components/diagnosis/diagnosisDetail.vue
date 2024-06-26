@@ -56,9 +56,10 @@
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-save m-2">Actualizar</button>
                     <a href="" class="btn btn-light" data-bs-dismiss="modal">Cancelar</a>
-                    <button @click="reloadPath" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <RouterLink :to="`/diagnosis/detail/${route.params.id}`" class="btn btn-secondary"
+                      data-bs-dismiss="modal">
                       Terminar
-                    </button>
+                    </RouterLink>
                   </div>
                 </form>
                 <p v-if="message.success.length > 0" class="alert alert-success mt-2" role="alert">
@@ -83,7 +84,7 @@
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue'
 import type { _diagnosis } from '@/interfaces/interface'
-import { useRoute, useRouter } from 'vue-router'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { editDiagnosis, getDiag } from '@/data/diagnosis'
 //import router from '@/router'
 import { fieldTreatment } from '@/validation/diagnosis'
@@ -147,7 +148,6 @@ const _editTreatment = async () => {
       message.warning = ''
       setTimeout(async () => {
         message.success = ''
-        route = `/diagnosis/detail/${route.params.id}`
       }, 1500)
       //router.back()
     } else {
@@ -160,9 +160,7 @@ const _editTreatment = async () => {
     console.log(error.response)
   }
 }
-const reloadPath = async () => {
-  route = `/diagnosis/detail/${route.params.id}`
-}
+
 </script>
 
 <style lang="css" scoped>
