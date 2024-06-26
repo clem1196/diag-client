@@ -45,7 +45,7 @@
                       id="observation" placeholder="" />
                     <small>{{
                       dataObject.treatment.length + ' ' + 'de' + ' ' + 2083 + ' ' + 'caracteres'
-                    }}</small>
+                      }}</small>
                     <small v-if="
                       fields.validateTreatment === '' || fields.validateTreatment === 'Opcional'
                     " class="text-alert-optional">
@@ -56,6 +56,9 @@
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-save m-2">Actualizar</button>
                     <a href="" class="btn btn-light" data-bs-dismiss="modal">Cancelar</a>
+                    <button @click="reloadPath" class="btn btn-secondary" data-bs-dismiss="modal">
+                      Terminar
+                    </button>
                   </div>
                 </form>
                 <p v-if="message.success.length > 0" class="alert alert-success mt-2" role="alert">
@@ -80,15 +83,17 @@
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue'
 import type { _diagnosis } from '@/interfaces/interface'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { editDiagnosis, getDiag } from '@/data/diagnosis'
-import router from '@/router'
+//import router from '@/router'
 import { fieldTreatment } from '@/validation/diagnosis'
+
 
 defineProps({
   title: { type: String, default: 'Diagnosis Details' }
 })
 const route: any = useRoute()
+const router = useRouter()
 
 onMounted(async () => {
   const diagnosisOneData = await getDiag(route.params.id)
@@ -137,8 +142,14 @@ const _editTreatment = async () => {
   try {
     let res = await editDiagnosis(route.params.id, dataObject)
     if (res?.statusText === 'Created') {
+      message.success = res.data.Message
       message.err = ''
-      router.replace('/diagnosis/detail/' + route.params.id)
+      message.warning = ''
+      setTimeout(async () => {
+        message.success = ''
+        location.reload()
+      }, 1500)
+      //router.back()
     } else {
       console.log('no hubo cambios')
       message.warning = 'Modifique algo o presione cancelar'
@@ -148,6 +159,9 @@ const _editTreatment = async () => {
     message.err = error.response
     console.log(error.response)
   }
+}
+const reloadPath = async () => {
+  await router.push("/diagnosis/detail/" + route.params.id)
 }
 </script>
 
