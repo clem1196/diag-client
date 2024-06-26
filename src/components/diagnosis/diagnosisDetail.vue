@@ -92,7 +92,7 @@ import { fieldTreatment } from '@/validation/diagnosis'
 defineProps({
   title: { type: String, default: 'Diagnosis Details' }
 })
-const route: any = useRoute()
+let route: any = useRoute()
 const router = useRouter()
 
 onMounted(async () => {
@@ -147,7 +147,7 @@ const _editTreatment = async () => {
       message.warning = ''
       setTimeout(async () => {
         message.success = ''
-        location.reload()
+        route = `/diagnosis/detail/${route.params.id}`
       }, 1500)
       //router.back()
     } else {
