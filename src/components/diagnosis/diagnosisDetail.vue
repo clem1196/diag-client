@@ -45,7 +45,7 @@
                       id="observation" placeholder="" />
                     <small>{{
                       dataObject.treatment.length + ' ' + 'de' + ' ' + 2083 + ' ' + 'caracteres'
-                      }}</small>
+                    }}</small>
                     <small v-if="
                       fields.validateTreatment === '' || fields.validateTreatment === 'Opcional'
                     " class="text-alert-optional">
@@ -56,10 +56,6 @@
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-save m-2">Actualizar</button>
                     <a href="" class="btn btn-light" data-bs-dismiss="modal">Cancelar</a>
-                    <RouterLink :to="`/diagnosis/detail/${route.params.id}`" class="btn btn-secondary"
-                      data-bs-dismiss="modal">
-                      Terminar
-                    </RouterLink>
                   </div>
                 </form>
                 <p v-if="message.success.length > 0" class="alert alert-success mt-2" role="alert">
