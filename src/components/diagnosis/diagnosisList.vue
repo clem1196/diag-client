@@ -4,22 +4,25 @@
 
     <!--LIST-->
     <div>
-      <div class="card card-title">
-        Diagnosis
-      </div>
+      <div class="card card-title">Diagnosis</div>
       <!--Form-->
       <div class="card card-search">
         <div class="row row-search">
           <!--Add-->
-          <a @click="openModal" type="button" class="col-1 icon-add" title="Create diagnosis"><i
-              class="bi-person-fill-add">
-            </i></a>
+          <a @click="openModal" type="button" class="col-1 icon-add" title="Create diagnosis"
+            ><i class="bi-person-fill-add"> </i
+          ></a>
           <!--Switch-->
           <div class="col-auto">
             <div class="form-switch form-check" title="Clasic mode">
               <label class="form-check-label" for="switDiagnosisPatient"></label>
-              <input @click="changeFilter" type="checkbox" name="inputNameSwitch" class="form-check-input myCheck"
-                id="switDiagnosisPatient" />
+              <input
+                @click="changeFilter"
+                type="checkbox"
+                name="inputNameSwitch"
+                class="form-check-input myCheck"
+                id="switDiagnosisPatient"
+              />
             </div>
           </div>
           <!--Search-->
@@ -29,8 +32,13 @@
               <div class="row m-2">
                 <div class="col-auto">
                   <i class="bi-search"></i>
-                  <input v-model="text" type="search" id="inputMode1" name="inputMode1"
-                    class="form-control form-control-sm search" />
+                  <input
+                    v-model="text"
+                    type="search"
+                    id="inputMode1"
+                    name="inputMode1"
+                    class="form-control form-control-sm search"
+                  />
                 </div>
               </div>
             </form>
@@ -41,16 +49,25 @@
                   <button type="submit" class="btn-form">Search</button>
                 </div>
                 <div class="col-auto">
-                  <button v-if="success.length > 0 || err.length > 0" @click="getDataPages(1)" type="button"
-                    class="btn-form cancel">
+                  <button
+                    v-if="success.length > 0 || err.length > 0"
+                    @click="getDataPages(1)"
+                    type="button"
+                    class="btn-form cancel"
+                  >
                     Exit
                   </button>
                   <button v-else disabled type="button" class="btn-form">Exit</button>
                 </div>
                 <div class="col-auto mt-1">
                   <i class="bi-search"></i>
-                  <input v-model="text" id="inputMode2" name="inputMode2" class="form-control form-control-sm search"
-                    type="search" />
+                  <input
+                    v-model="text"
+                    id="inputMode2"
+                    name="inputMode2"
+                    class="form-control form-control-sm search"
+                    type="search"
+                  />
                 </div>
               </div>
             </form>
@@ -71,9 +88,7 @@
               </th>
               <th>
                 <i class="bi-filter"></i>
-                <button @click="sortPatient" class="btn btn-sm th-font-size">
-                  FullName
-                </button>
+                <button @click="sortPatient" class="btn btn-sm th-font-size">FullName</button>
               </th>
               <th>
                 <i class="bi-filter"></i>
@@ -108,9 +123,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="search in searchDiagnosis.values" :key="search['diagnosis_id']" class="tbody-tr">
+            <tr
+              v-for="search in searchDiagnosis.values"
+              :key="search['diagnosis_id']"
+              class="tbody-tr"
+            >
               <td class="color-td">{{ search['diagnosis_id'] }}</td>
-              <td class="color-td">{{ search["patient"] }}</td>
+              <td class="color-td">{{ search['patient'] }}</td>
               <td class="color-td">{{ search['test'] }}</td>
               <td class="color-td">{{ search['result'] }}</td>
               <td class="color-td">{{ search['pi'] }}</td>
@@ -162,9 +181,18 @@
             </button>
           </li>
           <!--Pages-->
-          <li v-for="pag in totalPages()" :key="pag" @click="getDataPages(pag)" class="page-item"
-            :class="isActive(pag)">
-            <button v-if="currentPage - 1 < pag && pag < currentPage + 3" type="button" class="page-link size">
+          <li
+            v-for="pag in totalPages()"
+            :key="pag"
+            @click="getDataPages(pag)"
+            class="page-item"
+            :class="isActive(pag)"
+          >
+            <button
+              v-if="currentPage - 1 < pag && pag < currentPage + 3"
+              type="button"
+              class="page-link size"
+            >
               {{ pag }}
             </button>
           </li>
@@ -197,14 +225,13 @@
   </div>
 </template>
 <script setup lang="ts">
-
 import { onMounted, reactive, ref } from 'vue'
-import type { _diagnosis } from '../../interfaces/interface'
+import type { _diagnosis } from '@/interfaces/interface'
 import { getDiagnosis } from '@/data/diagnosis'
-import { RouterLink, useRoute } from 'vue-router'
-import DiagnosisPatientList from './diagnosisPatientList.vue';
-import DiagnosisCreate from './diagnosisCreate.vue';
-const route: any = useRoute()
+import { RouterLink } from 'vue-router'
+import DiagnosisPatientList from '@/components/diagnosis/diagnosisPatientList.vue'
+import DiagnosisCreate from '@/components/diagnosis/diagnosisCreate.vue'
+
 defineProps({
   title: { type: String, default: 'Detalles' }
 })
@@ -217,7 +244,6 @@ onMounted(async () => {
   }
   getDataPages(currentPage.value)
   color_td()
-
 })
 
 //LIST
@@ -307,20 +333,20 @@ const sortId = () => {
 }
 const sortPatient = () => {
   const asc = (a: _diagnosis, b: _diagnosis) => {
-    return a.patient.localeCompare(b.patient);
-  };
-  const desc = (a: _diagnosis, b: _diagnosis) => {
-    return b.patient.localeCompare(a.patient);
-  };
-  const searchDiagnosisValues: any = searchDiagnosis.values;
-  if (sortValue.value) {
-    sortValue.value = false;
-    return searchDiagnosisValues.sort(asc);
-  } else {
-    sortValue.value = true;
-    return searchDiagnosisValues.sort(desc);
+    return a.patient.localeCompare(b.patient)
   }
-};
+  const desc = (a: _diagnosis, b: _diagnosis) => {
+    return b.patient.localeCompare(a.patient)
+  }
+  const searchDiagnosisValues: any = searchDiagnosis.values
+  if (sortValue.value) {
+    sortValue.value = false
+    return searchDiagnosisValues.sort(asc)
+  } else {
+    sortValue.value = true
+    return searchDiagnosisValues.sort(desc)
+  }
+}
 const sortTest = () => {
   const asc = (a: _diagnosis, b: _diagnosis) => {
     return a.test.localeCompare(b.test)

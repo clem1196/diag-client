@@ -12,6 +12,7 @@
 //            |___/
 //
 
+// eslint-disable-next-line no-undef
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
@@ -34,6 +35,7 @@ module.exports = {
 
   vite_dev_server: {
     start_vite: true,
+    // eslint-disable-next-line no-undef
     port: process.env.CI ? 4173 : 5173
   },
 
@@ -47,6 +49,7 @@ module.exports = {
   test_settings: {
     default: {
       disable_error_log: false,
+      // eslint-disable-next-line no-undef
       launch_url: `http://localhost:${process.env.CI ? '4173' : '5173'}`,
 
       screenshots: {

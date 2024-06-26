@@ -19,10 +19,11 @@
       <li>Created:{{ ' ' + new Date(diag['created']).toLocaleString('pe-PE') }}</li>
       <li v-if="diag['updated'] === null">Updated:{{ ' ' + diag['updated'] }}</li>
       <li v-else>Updated:{{ ' ' + new Date(diag['updated']).toLocaleString('pe-PE') }}</li>
-      <li> <button type="button" class="btn btn-sm btn-save mt-2" data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop">
+      <li>
+        <button type="button" class="btn btn-sm btn-save mt-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
           Receta y/o Recomendación
-        </button></li>
+        </button>
+      </li>
       <div>
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -30,9 +31,10 @@
           <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Receta y/o recomendación para: {{ ' ' +
-                  diag['test'] }} - {{ diag['interpretation']
-                  }}</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                  Receta y/o recomendación para: {{ ' ' + diag['test'] }} -
+                  {{ diag['interpretation'] }}
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -76,10 +78,10 @@
   <!--Pagination-->
 </template>
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue'
-import type { _diagnosis } from '../../interfaces/interface'
+import { onMounted, reactive } from 'vue'
+import type { _diagnosis } from '@/interfaces/interface'
 import { useRoute } from 'vue-router'
-import { editDiagnosis, getDiag, getDiagnosis } from '@/data/diagnosis'
+import { editDiagnosis, getDiag } from '@/data/diagnosis'
 import router from '@/router'
 import { fieldTreatment } from '@/validation/diagnosis'
 
@@ -136,7 +138,7 @@ const _editTreatment = async () => {
     let res = await editDiagnosis(route.params.id, dataObject)
     if (res?.statusText === 'Created') {
       message.err = ''
-      location.replace('/diagnosis/detail/' + route.params.id)
+      router.replace('/diagnosis/detail/' + route.params.id)
     } else {
       console.log('no hubo cambios')
       message.warning = 'Modifique algo o presione cancelar'

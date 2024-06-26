@@ -4,7 +4,7 @@
   "compilerOptions": {
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.vitest.tsbuildinfo",
-
+    "moduleResolution": "Node",
     "lib": [],
     "types": ["node", "jsdom"]
   }

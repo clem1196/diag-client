@@ -6,13 +6,13 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue')
+      component: () => import(/* webpackChunkName: "home" */ '@/views/HomeView.vue')
     },
 
     {
       path: '/about',
       name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+      component: () => import(/* webpackChunkName: "about" */ '@/views/AboutView.vue')
     },
 
     //Diagnosis
@@ -43,8 +43,7 @@ const router = createRouter({
       name: 'diagnosisCreate',
       component: () =>
         import(/* webpackChunkName: "diagnosisAdd" */ '@/components/diagnosis/diagnosisCreate.vue')
-    }
-    ,
+    },
     {
       path: '/diagnosis/add/:name',
       name: 'diagnosisAdd',

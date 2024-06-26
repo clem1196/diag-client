@@ -6,7 +6,6 @@
       <!--Form-->
       <div class="card card-search">
         <div class="row row-search">
-
           <!--Switch-->
           <div class="col-auto">
             <div class="form-switch form-check" title="Clasic mode">
@@ -80,9 +79,9 @@
 </template>
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
-import type { _diagnosis } from '../../interfaces/interface'
+import type { _diagnosis } from '@/interfaces/interface'
 import { getDiagnosis } from '@/data/diagnosis'
-import { RouterLink } from 'vue-router';
+import { RouterLink } from 'vue-router'
 defineProps({
   title: { type: String, default: 'Pacientes' }
 })
@@ -113,7 +112,6 @@ const text = ref('')
 //Messages
 const err = ref('')
 const success = ref('')
-
 
 //Switch
 const changeFilter = () => {

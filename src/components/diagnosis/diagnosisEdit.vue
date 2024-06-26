@@ -12,9 +12,16 @@
             <!--patient-->
             <div class="col-auto">
               <label for="patient">Paciente</label>
-              <input v-model="dataObject.patient" type="text" class="form-control input-size" id="patient" />
-              <small v-if="fields.validatePatient === '' || fields.validatePatient === 'Opcional'"
-                class="text-alert-optional">
+              <input
+                v-model="dataObject.patient"
+                type="text"
+                class="form-control input-size"
+                id="patient"
+              />
+              <small
+                v-if="fields.validatePatient === '' || fields.validatePatient === 'Opcional'"
+                class="text-alert-optional"
+              >
                 {{ fields.validatePatient }}
               </small>
               <small v-else class="text-alert-error">{{ fields.validatePatient }}</small>
@@ -37,11 +44,14 @@
                 </option>
               </select>
 
-              <small v-if="
-                dataObject.test === '' ||
-                dataObject.test.length === 0 ||
-                dataObject.test === undefined
-              " class="text-alert-error">
+              <small
+                v-if="
+                  dataObject.test === '' ||
+                  dataObject.test.length === 0 ||
+                  dataObject.test === undefined
+                "
+                class="text-alert-error"
+              >
                 Requerido
               </small>
               <small v-else class="text-alert-optional"></small>
@@ -49,10 +59,17 @@
             <!--result-->
             <div class="col-auto">
               <label for="result">Result</label>
-              <input v-model="dataObject.result" type="text" class="form-control input-size" id="result" />
+              <input
+                v-model="dataObject.result"
+                type="text"
+                class="form-control input-size"
+                id="result"
+              />
 
-              <small v-if="fields.validateResult === '' || fields.validateResult === 'Opcional'"
-                class="text-alert-optional">
+              <small
+                v-if="fields.validateResult === '' || fields.validateResult === 'Opcional'"
+                class="text-alert-optional"
+              >
                 {{ fields.validateResult }}
               </small>
               <small v-else class="text-alert-error">{{ fields.validateResult }}</small>
@@ -68,10 +85,17 @@
             <!--observation-->
             <div class="col-auto">
               <label for="observation">Observación</label>
-              <textarea v-model="dataObject.observation" type="text" class="form-control input-size" id="observation"
-                placeholder="" />
-              <small v-if="dataObject.observation !== null && dataObject.observation.length > 2083"
-                class="text-alert-error">
+              <textarea
+                v-model="dataObject.observation"
+                type="text"
+                class="form-control input-size"
+                id="observation"
+                placeholder=""
+              />
+              <small
+                v-if="dataObject.observation !== null && dataObject.observation.length > 2083"
+                class="text-alert-error"
+              >
                 No se aceptan mas caracteres
               </small>
             </div>
@@ -80,9 +104,7 @@
           <!--Editar-->
           <div class="card card-footer">
             <button type="submit" class="btn btn-save m-2">Actualizar</button>
-            <button @click="$router.back()" class="btn btn-light">
-              Cancelar
-            </button>
+            <button @click="$router.back()" class="btn btn-light">Cancelar</button>
           </div>
         </form>
 
@@ -96,22 +118,20 @@
           <i class="bi-exclamation-triangle-fill m-1"></i>{{ message.err }}
         </p>
       </div>
-      <div class="col-8">
-        Libre para agregar algo aqui
-      </div>
+      <div class="col-8">Libre para agregar algo aqui</div>
     </div>
     <!--LIST for details-->
   </div>
 </template>
 <script setup lang="ts">
 //import usersList from './usersList.vue'
-import { getDiagnosis, editDiagnosis, getDiag } from '../../data/diagnosis'
+import { getDiagnosis, editDiagnosis, getDiag } from '@/data/diagnosis'
 import { onMounted, reactive } from 'vue'
-import type { _diagnosis } from '../../interfaces/interface'
+import type { _diagnosis } from '@/interfaces/interface'
 
 import { useRoute } from 'vue-router'
 import router from '@/router'
-import { fieldPatient, fieldResult } from '../../validation/diagnosis'
+import { fieldPatient, fieldResult } from '@/validation/diagnosis'
 
 const route: any = useRoute()
 const diagnosis: Array<_diagnosis> = reactive([])
@@ -122,7 +142,7 @@ const dataObject = reactive({
   sex: 'F',
   test: 'LDH/DHL',
   result: '0.0',
-  treatment: '0.0',
+  treatment: '',
   condition: 'activo',
   observation: ''
 })
@@ -158,7 +178,6 @@ onMounted(async () => {
   await _getDiagnosis()
   _validData()
   console.log(arrayTest)
-
 })
 const _getDiagnosis = async () => {
   //console.log(route.params.name);
@@ -188,7 +207,6 @@ const _getDiagnosis = async () => {
 }
 const _editDiagnosis = async () => {
   try {
-
     let res = await editDiagnosis(route.params.id, dataObject)
     if (res?.statusText === 'Created') {
       message.success = res.data.Message
@@ -198,7 +216,6 @@ const _editDiagnosis = async () => {
       console.log('no hubo cambios')
       message.warning = 'Modifique algo o presione cancelar'
     }
-
   } catch (error: any | undefined) {
     message.success = ''
     message.err = error.response.data.Message
@@ -222,7 +239,6 @@ const cleanForm = async () => {
   message.warning = ''
   await _validData()
 }
-
 </script>
 
 <style></style>

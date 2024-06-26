@@ -1,14 +1,27 @@
 <template>
   <!-- Modal -->
   <!-- Button trigger modal -->
-  <button type="button" id="formAdd" hidden class="btn btn-primary" data-bs-toggle="modal"
-    data-bs-target="#staticBackdrop">
+  <button
+    type="button"
+    id="formAdd"
+    hidden
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#staticBackdrop"
+  >
     Launch static backdrop modal
   </button>
 
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -16,13 +29,17 @@
             <!--Title-->
             Agregar Diagnosis
           </div>
-          <button type="button" @click="props.closeFormAdd" class="btn-close" data-bs-dismiss="modal"
-            aria-label="Close"></button>
+          <button
+            type="button"
+            @click="props.closeFormAdd"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
           <!--form add by name-->
           <form @submit.prevent="_addDiagnosis" @keyup="_validData">
-
             <div class="card card-body">
               <!--test-->
               <div class="col-auto">
@@ -33,11 +50,14 @@
                   </option>
                 </select>
 
-                <small v-if="
-                  dataObject.test === '' ||
-                  dataObject.test.length === 0 ||
-                  dataObject.test === undefined
-                " class="text-alert-error">
+                <small
+                  v-if="
+                    dataObject.test === '' ||
+                    dataObject.test.length === 0 ||
+                    dataObject.test === undefined
+                  "
+                  class="text-alert-error"
+                >
                   Requerido
                 </small>
                 <small v-else class="text-alert-optional"></small>
@@ -45,10 +65,17 @@
               <!--result-->
               <div class="col-auto">
                 <label for="result">Result</label>
-                <input v-model="dataObject.result" type="text" class="form-control input-size" id="result" />
+                <input
+                  v-model="dataObject.result"
+                  type="text"
+                  class="form-control input-size"
+                  id="result"
+                />
 
-                <small v-if="fields.validateResult === '' || fields.validateResult === 'Opcional'"
-                  class="text-alert-optional">
+                <small
+                  v-if="fields.validateResult === '' || fields.validateResult === 'Opcional'"
+                  class="text-alert-optional"
+                >
                   {{ fields.validateResult }}
                 </small>
                 <small v-else class="text-alert-error">{{ fields.validateResult }}</small>
@@ -56,31 +83,51 @@
               <!--observation-->
               <div class="col-auto">
                 <label for="observation">Observación</label>
-                <textarea v-model="dataObject.observation" type="text" class="form-control input-size" id="observation"
-                  placeholder="" />
-                <small v-if="dataObject.observation !== null && dataObject.observation.length > 2083"
-                  class="text-alert-error">
+                <textarea
+                  v-model="dataObject.observation"
+                  type="text"
+                  class="form-control input-size"
+                  id="observation"
+                  placeholder=""
+                />
+                <small
+                  v-if="dataObject.observation !== null && dataObject.observation.length > 2083"
+                  class="text-alert-error"
+                >
                   No se aceptan mas caracteres
                 </small>
               </div>
             </div>
             <!--Agregar-->
-            <div v-if="
-              dataObject.result === '0.0' ||
-              dataObject.result === '.0' ||
-              dataObject.result === '0.' ||
-              dataObject.result === '0' ||
-              isNumber(dataObject.result) === false
-            " class="modal-footer">
-              <button disabled type="submit" class="btn btn-save ">Agregar</button>
-              <button disabled @click="props.closeFormAdd" class="btn btn-light"
-                data-bs-dismiss="modal">Cancelar</button>
-              <button @click="props.closeFormAdd" class="btn btn-secondary" data-bs-dismiss="modal">Terminar</button>
+            <div
+              v-if="
+                dataObject.result === '0.0' ||
+                dataObject.result === '.0' ||
+                dataObject.result === '0.' ||
+                dataObject.result === '0' ||
+                isNumber(dataObject.result) === false
+              "
+              class="modal-footer"
+            >
+              <button disabled type="submit" class="btn btn-save">Agregar</button>
+              <button
+                disabled
+                @click="props.closeFormAdd"
+                class="btn btn-light"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button @click="props.closeFormAdd" class="btn btn-secondary" data-bs-dismiss="modal">
+                Terminar
+              </button>
             </div>
             <div v-else class="modal-footer">
-              <button type="submit" class="btn btn-save ">Agregar</button>
+              <button type="submit" class="btn btn-save">Agregar</button>
               <button @click="cleanForm" class="btn btn-light">Cancelar</button>
-              <button @click="props.closeFormAdd" class="btn btn-secondary" data-bs-dismiss="modal">Terminar</button>
+              <button @click="props.closeFormAdd" class="btn btn-secondary" data-bs-dismiss="modal">
+                Terminar
+              </button>
             </div>
           </form>
           <p v-if="message.success.length > 0" class="alert alert-success mt-2" role="alert">
@@ -98,14 +145,12 @@
   </div>
 </template>
 <script setup lang="ts">
-
-import { addDiagnosis, getDiagnosis } from '../../data/diagnosis'
+import { addDiagnosis, getDiagnosis } from '@/data/diagnosis'
 import { onMounted, reactive } from 'vue'
-import type { _diagnosis } from '../../interfaces/interface'
-import { fieldPatient, fieldResult } from '../../validation/diagnosis'
-import { useRoute } from "vue-router";
-import { isNumber } from 'chart.js/helpers';
-
+import type { _diagnosis } from '@/interfaces/interface'
+import { fieldPatient, fieldResult } from '@/validation/diagnosis'
+import { useRoute } from 'vue-router'
+import { isNumber } from 'chart.js/helpers'
 
 /*======================================================================*/
 //props
@@ -222,10 +267,8 @@ const _getDiagnosis = async () => {
     message.success = 'En hora buena ya tienes tus tests completo'
     setTimeout(() => {
       message.success = ''
-
     }, 5000)
   }
-
 }
 const cleanForm = async () => {
   dataObject.patient = ''
@@ -239,7 +282,6 @@ const cleanForm = async () => {
   message.warning = ''
   await _validData()
 }
-
 </script>
 
 <style></style>
