@@ -45,7 +45,7 @@
                       id="observation" placeholder="" />
                     <small>{{
                       dataObject.treatment.length + ' ' + 'de' + ' ' + 2083 + ' ' + 'caracteres'
-                      }}</small>
+                    }}</small>
                     <small v-if="
                       fields.validateTreatment === '' || fields.validateTreatment === 'Opcional'
                     " class="text-alert-optional">
@@ -161,7 +161,7 @@ const _editTreatment = async () => {
   }
 }
 const reloadPath = async () => {
-  await router.push("/diagnosis/detail/" + route.params.id)
+  route = `/diagnosis/detail/${route.params.id}`
 }
 </script>
 
