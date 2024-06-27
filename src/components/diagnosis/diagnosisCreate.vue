@@ -112,7 +112,6 @@ import { addDiagnosis, getDiagnosis } from '@/data/diagnosis'
 import { onMounted, reactive } from 'vue'
 import type { _diagnosis } from '@/interfaces/interface'
 import { fieldPatient, fieldResult } from '@/validation/diagnosis'
-import router from '@/router'
 
 //props
 const props = defineProps({
@@ -178,7 +177,6 @@ const _createDiagnosis = async () => {
       message.err = ''
       setTimeout(async () => {
         message.success = ''
-        await router.replace(`/diagnosis/${res.data.results.patient}`)
         location.reload()
       }, 1500)
       //router.back()

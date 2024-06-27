@@ -123,7 +123,7 @@
                   <i class="bi-pencil-fill"></i>
                 </button>
                 |
-                <button @click="openModalRemove(search['diagnosis_id'])" class="btn btn-outline-danger btn-sm"
+                <button @click="openModalDelete(search['diagnosis_id'])" class="btn btn-outline-danger btn-sm"
                   title="Delete">
                   <i class="bi-trash-fill"></i>
                 </button>
@@ -194,8 +194,8 @@
     <DiagnosisCreate v-if="showModalCreate" :close-form-create="closeModalCreate"></DiagnosisCreate>
     <DiagnosisEdit v-if="showModalEdit" :close-form-edit="closeModalEdit" :edit-id="idSelected">
     </DiagnosisEdit>
-    <RemoveComponent v-if="showModalRemove" :close-form-remove="closeModalRemove" :remove-id="idSelected">
-    </RemoveComponent>
+    <DiagnosisDelete v-if="showModalDelete" :close-form-remove="closeModalDelete" :delete-id="idSelected">
+    </DiagnosisDelete>
   </div>
 </template>
 <script setup lang="ts">
@@ -205,7 +205,7 @@ import { getDiagnosis } from '@/data/diagnosis'
 import { RouterLink } from 'vue-router'
 import DiagnosisPatientList from '@/components/diagnosis/diagnosisPatientList.vue'
 import DiagnosisCreate from '@/components/diagnosis/diagnosisCreate.vue'
-import RemoveComponent from '../deleteComponent/removeComponent.vue'
+import DiagnosisDelete from '@/components/diagnosis/diagnosisDelete.vue'
 import DiagnosisEdit from './diagnosisEdit.vue'
 
 defineProps({
@@ -236,7 +236,7 @@ const text = ref('')
 //modal
 const showModalCreate = ref(false)
 const showModalEdit = ref(false)
-const showModalRemove = ref(false)
+const showModalDelete = ref(false)
 let idSelected = ref(0)
 //Messages
 const err = ref('')
@@ -262,13 +262,13 @@ const closeModalEdit = () => {
   showModalEdit.value = false
 }
 //delete
-const openModalRemove = (diagnosisid: number) => {
+const openModalDelete = (diagnosisid: number) => {
   console.log(diagnosisid)
   idSelected.value = diagnosisid
-  showModalRemove.value = true
+  showModalDelete.value = true
 }
-const closeModalRemove = () => {
-  showModalRemove.value = false
+const closeModalDelete = () => {
+  showModalDelete.value = false
 }
 //color interpretation
 const color_td = async () => {

@@ -61,7 +61,7 @@ const router = createRouter({
       name: 'diagnosisDelete',
       component: () =>
         import(
-          /* webpackChunkName: "diagnosisDelete" */ '@/components/deleteComponent/removeComponent.vue'
+          /* webpackChunkName: "diagnosisDelete" */ '@/components/diagnosis/diagnosisDelete.vue'
         )
     },
     {
