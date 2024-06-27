@@ -88,11 +88,9 @@ defineProps({
 onMounted(async () => {
   const diagnosisData = await getDiagnosis()
   if (diagnosisData?.statusText == 'OK') {
-    //patients
-    console.log(diagnosisData.data.patients)
+    //patients   
     diagnosis.values = diagnosisData.data.patients
   }
-  console.log(diagnosis.values)
   if (diagnosis.length > 0) {
     getDataPages(currentPage.value)
   }

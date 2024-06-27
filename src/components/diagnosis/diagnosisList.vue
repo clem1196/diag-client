@@ -9,20 +9,14 @@
       <div class="card card-search">
         <div class="row row-search">
           <!--Add-->
-          <a @click="openModal" type="button" class="col-1 icon-add" title="Create diagnosis"
-            ><i class="bi-person-fill-add"> </i
-          ></a>
+          <a @click="openModalCreate" type="button" class="col-1 icon-add" title="Create diagnosis"><i
+              class="bi-person-fill-add"> </i></a>
           <!--Switch-->
           <div class="col-auto">
             <div class="form-switch form-check" title="Clasic mode">
               <label class="form-check-label" for="switDiagnosisPatient"></label>
-              <input
-                @click="changeFilter"
-                type="checkbox"
-                name="inputNameSwitch"
-                class="form-check-input myCheck"
-                id="switDiagnosisPatient"
-              />
+              <input @click="changeFilter" type="checkbox" name="inputNameSwitch" class="form-check-input myCheck"
+                id="switDiagnosisPatient" />
             </div>
           </div>
           <!--Search-->
@@ -32,13 +26,8 @@
               <div class="row m-2">
                 <div class="col-auto">
                   <i class="bi-search"></i>
-                  <input
-                    v-model="text"
-                    type="search"
-                    id="inputMode1"
-                    name="inputMode1"
-                    class="form-control form-control-sm search"
-                  />
+                  <input v-model="text" type="search" id="inputMode1" name="inputMode1"
+                    class="form-control form-control-sm search" />
                 </div>
               </div>
             </form>
@@ -49,25 +38,16 @@
                   <button type="submit" class="btn-form">Search</button>
                 </div>
                 <div class="col-auto">
-                  <button
-                    v-if="success.length > 0 || err.length > 0"
-                    @click="getDataPages(1)"
-                    type="button"
-                    class="btn-form cancel"
-                  >
+                  <button v-if="success.length > 0 || err.length > 0" @click="getDataPages(1)" type="button"
+                    class="btn-form cancel">
                     Exit
                   </button>
                   <button v-else disabled type="button" class="btn-form">Exit</button>
                 </div>
                 <div class="col-auto mt-1">
                   <i class="bi-search"></i>
-                  <input
-                    v-model="text"
-                    id="inputMode2"
-                    name="inputMode2"
-                    class="form-control form-control-sm search"
-                    type="search"
-                  />
+                  <input v-model="text" id="inputMode2" name="inputMode2" class="form-control form-control-sm search"
+                    type="search" />
                 </div>
               </div>
             </form>
@@ -123,11 +103,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="search in searchDiagnosis.values"
-              :key="search['diagnosis_id']"
-              class="tbody-tr"
-            >
+            <tr v-for="search in searchDiagnosis.values" :key="search['diagnosis_id']" class="tbody-tr">
               <td class="color-td">{{ search['diagnosis_id'] }}</td>
               <td class="color-td">{{ search['patient'] }}</td>
               <td class="color-td">{{ search['test'] }}</td>
@@ -136,18 +112,21 @@
               <td class="color-td">{{ search['ideal'] }}</td>
               <td class="color-td">{{ search['pf'] }}</td>
               <td class="color-td">{{ search['interpretation'] }}</td>
-              <td>
-                <RouterLink :to="'/diagnosis/detail/' + search['diagnosis_id']" title="Detail">
-                  <i class="bi-card-checklist size-checklist"></i>
+              <td class="colorBarra">
+                <RouterLink :to="'/diagnosis/detail/' + search['diagnosis_id']" class="btn btn-outline-info btn-sm"
+                  title="Detail">
+                  <i class="bi-card-checklist"></i>
                 </RouterLink>
                 |
-                <RouterLink :to="'/diagnosis/edit/' + search['diagnosis_id']" title="Edit">
-                  <i class="bi-pencil-fill size-pencil"></i>
-                </RouterLink>
+                <button @click="openModalEdit(search['diagnosis_id'])" class="btn btn-outline-warning btn-sm"
+                  title="Edit">
+                  <i class="bi-pencil-fill"></i>
+                </button>
                 |
-                <RouterLink :to="'/diagnosis/delete/' + search['diagnosis_id']" title="Delete">
-                  <i class="bi-trash-fill size-trash"></i>
-                </RouterLink>
+                <button @click="openModalRemove(search['diagnosis_id'])" class="btn btn-outline-danger btn-sm"
+                  title="Delete">
+                  <i class="bi-trash-fill"></i>
+                </button>
               </td>
             </tr>
           </tbody>
@@ -181,18 +160,9 @@
             </button>
           </li>
           <!--Pages-->
-          <li
-            v-for="pag in totalPages()"
-            :key="pag"
-            @click="getDataPages(pag)"
-            class="page-item"
-            :class="isActive(pag)"
-          >
-            <button
-              v-if="currentPage - 1 < pag && pag < currentPage + 3"
-              type="button"
-              class="page-link size"
-            >
+          <li v-for="pag in totalPages()" :key="pag" @click="getDataPages(pag)" class="page-item"
+            :class="isActive(pag)">
+            <button v-if="currentPage - 1 < pag && pag < currentPage + 3" type="button" class="page-link size">
               {{ pag }}
             </button>
           </li>
@@ -221,7 +191,11 @@
         </ul>
       </nav>
     </div>
-    <DiagnosisCreate v-if="showModal" :close-form-create="closeModal"></DiagnosisCreate>
+    <DiagnosisCreate v-if="showModalCreate" :close-form-create="closeModalCreate"></DiagnosisCreate>
+    <DiagnosisEdit v-if="showModalEdit" :close-form-edit="closeModalEdit" :edit-id="idSelected">
+    </DiagnosisEdit>
+    <RemoveComponent v-if="showModalRemove" :close-form-remove="closeModalRemove" :remove-id="idSelected">
+    </RemoveComponent>
   </div>
 </template>
 <script setup lang="ts">
@@ -231,6 +205,8 @@ import { getDiagnosis } from '@/data/diagnosis'
 import { RouterLink } from 'vue-router'
 import DiagnosisPatientList from '@/components/diagnosis/diagnosisPatientList.vue'
 import DiagnosisCreate from '@/components/diagnosis/diagnosisCreate.vue'
+import RemoveComponent from '../deleteComponent/removeComponent.vue'
+import DiagnosisEdit from './diagnosisEdit.vue'
 
 defineProps({
   title: { type: String, default: 'Detalles' }
@@ -258,20 +234,43 @@ const filter = ref(true)
 let searchDiagnosis: Array<_diagnosis> = reactive([])
 const text = ref('')
 //modal
-const showModal = ref(false)
+const showModalCreate = ref(false)
+const showModalEdit = ref(false)
+const showModalRemove = ref(false)
+let idSelected = ref(0)
 //Messages
 const err = ref('')
 const success = ref('')
 const sortValue = ref(false)
 
-//methods
-const openModal = () => {
-  showModal.value = true
+//Methods or Functions
+/*===================================================================*/
+//create
+const openModalCreate = () => {
+  showModalCreate.value = true
 }
-const closeModal = () => {
-  showModal.value = false
+const closeModalCreate = () => {
+  showModalCreate.value = false
 }
-
+//edit
+const openModalEdit = (diagnosisid: number) => {
+  console.log(diagnosisid)
+  idSelected.value = diagnosisid
+  showModalEdit.value = true
+}
+const closeModalEdit = () => {
+  showModalEdit.value = false
+}
+//delete
+const openModalRemove = (diagnosisid: number) => {
+  console.log(diagnosisid)
+  idSelected.value = diagnosisid
+  showModalRemove.value = true
+}
+const closeModalRemove = () => {
+  showModalRemove.value = false
+}
+//color interpretation
 const color_td = async () => {
   let myColor: HTMLCollection = await document.getElementsByClassName('color-td')
 
@@ -279,7 +278,7 @@ const color_td = async () => {
     const element = myColor[index]
 
     if (element.textContent === 'Saludable' || element.textContent === 'Normal') {
-      element.setAttribute('style', 'background-color: #4CAF50; color:white;')
+      element.setAttribute('style', 'color:#4CAF50;')
     }
 
     if (
@@ -289,20 +288,20 @@ const color_td = async () => {
       element.textContent === 'Alto' ||
       element.textContent === 'Severo'
     ) {
-      element.setAttribute('style', 'background-color: #FF9800; color:white;')
+      element.setAttribute('style', 'color:#FF9800;')
     }
     if (
       element.textContent === 'Peligro inicial' ||
       element.textContent === 'Peligro final' ||
       element.textContent === 'Muy alto'
     ) {
-      element.setAttribute('style', 'background-color: #FF5722; color:white;')
+      element.setAttribute('style', 'color:#FF5722;')
     }
     if (element.textContent === 'Leve' || element.textContent === 'Moderado') {
-      element.setAttribute('style', 'background-color: #CDDC39 ; color:white;')
+      element.setAttribute('style', 'color:#CDDC39;')
     }
     if (element.textContent === 'Leve' || element.textContent === 'Moderado') {
-      element.setAttribute('style', 'background-color: #CDDC39 ; color:white;')
+      element.setAttribute('style', 'color:#CDDC39;')
     }
   }
 
@@ -559,4 +558,9 @@ const getLastPage = () => {
 }
 </script>
 
-<style></style>
+<style lang="css">
+td.colorBarra {
+  color: white;
+
+}
+</style>
