@@ -11,17 +11,18 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header mt-1">
-          <div class="card card-title">
+        <div class="modal-header bg-light">
+          <h5 class="m-2">
             <!--Title-->
-            Crear Diagnosis
-          </div>
+            Crear nuevo
+          </h5>
           <button type="button" @click="props.closeFormCreate" class="btn-close" data-bs-dismiss="modal"
             aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          Agrega sus datos y su prueba de laboratorio
           <form @submit.prevent="_createDiagnosis" @keyup="_validData">
-            <div class="card card-body">
+            <div class="card card-body mt-2">
               <!--patient-->
               <div class="col-auto mt-1">
                 <label for="patient">Paciente</label>

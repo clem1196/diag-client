@@ -1,54 +1,40 @@
 <template>
   <div class="container-fluid">
-    <div class="card card-title">{{ title }}</div>
-    <!--LIST-->
     <div>
       <!--Form-->
-      <div class="card card-search">
+      <div class="card card-search1">
         <div class="row row-search">
-          <!--Switch-->
           <div class="col-auto">
-            <div class="form-switch form-check" title="Clasic mode">
-              <label class="form-check-label" for="switDiagnosisPatient"></label>
-              <input @click="changeFilter" type="checkbox" name="inputNameSwitch" class="form-check-input myCheck"
-                id="switDiagnosisPatient" />
-            </div>
+            <!--Add-->
+            <a @click="openModalCreate" title="Create diagnosis" type="button">
+              No tiene aún? crea Aquí<i class="bi-plus-square-fill"></i>
+            </a>
           </div>
           <!--Search-->
           <div class="col-auto">
-            <!--Search mode 1-->
-            <form v-if="filter == true" @keyup="getSearchDiagnosis">
-              <div class="row m-2">
-                <div class="col-auto">
-                  <i class="bi-search"></i>
-                  <input v-model="text" type="search" id="inputMode1" name="inputMode1"
-                    class="form-control form-control-sm search" />
-                </div>
-              </div>
-            </form>
             <!--search mode 2-->
-            <form v-else @submit.prevent="getSearchDiagnosis">
+            <form @submit.prevent="getSearchDiagnosis">
               <div class="row">
+                <div class="col-auto mt-2">Pacientes</div>
                 <div class="col-auto">
-                  <button type="submit" class="btn-form">Search</button>
-                </div>
-                <div class="col-auto">
-                  <button v-if="success.length > 0 || err.length > 0" @click="getDataPages(1)" type="button"
-                    class="btn-form cancel">
-                    Exit
-                  </button>
-                  <button v-else disabled type="button" class="btn-form">Exit</button>
-                </div>
-                <div class="col-auto mt-1">
                   <i class="bi-search"></i>
                   <input v-model="text" id="inputMode2" name="inputMode2" class="form-control form-control-sm search"
                     type="search" />
                 </div>
+                <div class="col-auto ">
+                  <button type="submit" class="btn btn-light btn-sm">Buscar</button>
+                </div>
+                <div class="col-1">
+                  <button v-if="success.length > 0 || err.length > 0" @click="getDataPages(1)" type="button"
+                    class="btn btn-light btn-sm">
+                    X
+                  </button>
+                  <button v-else hidden type="button" class="btn btn-light btn-sm">x</button>
+                </div>
+
+
               </div>
             </form>
-          </div>
-          <div class="col-auto icon-print" title="Print">
-            <a type="button"><i class="bi-printer"></i></a>
           </div>
         </div>
       </div>
@@ -74,6 +60,7 @@
           <small v-if="err.length > 0" class="text-danger">{{ err }}</small>
         </table>
       </div>
+      <DiagnosisCreate v-if="showModalCreate" :close-form-create="closeModalCreate"></DiagnosisCreate>
     </div>
   </div>
 </template>
@@ -82,6 +69,7 @@ import { onMounted, reactive, ref } from 'vue'
 import type { _diagnosis } from '@/interfaces/interface'
 import { getDiagnosis } from '@/data/diagnosis'
 import { RouterLink } from 'vue-router'
+import DiagnosisCreate from './diagnosisCreate.vue';
 defineProps({
   title: { type: String, default: 'Pacientes' }
 })
@@ -104,20 +92,22 @@ const currentPage = ref(1)
 const rows = ref()
 const pagination = ref(true)
 //search
-const filter = ref(true)
+//modal
+const showModalCreate = ref(false)
 let searchDiagnosis: Array<_diagnosis> = reactive([])
 const text = ref('')
 //Messages
 const err = ref('')
 const success = ref('')
 
-//Switch
-const changeFilter = () => {
-  if (filter.value == true) {
-    filter.value = false
-  } else {
-    filter.value = true
-  }
+//Methods or Functions
+/*===================================================================*/
+//create
+const openModalCreate = () => {
+  showModalCreate.value = true
+}
+const closeModalCreate = () => {
+  showModalCreate.value = false
 }
 //search
 const getSearchDiagnosis = () => {
@@ -172,4 +162,11 @@ const getDataPages = async (numPage: number) => {
 }
 </script>
 
-<style></style>
+<style lang="css" scoped>
+.bi-plus-square-fill {
+  color: seagreen;
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+
+}
+</style>

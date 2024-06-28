@@ -11,14 +11,16 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <div class="card card-title">
+        <div class="modal-header bg-light">
+          <h5 class="m-2">
             <!--Title-->
-            Agregar Diagnosis
-          </div>
+            Add to: {{ $route.params.name }}
+          </h5>
           <button type="button" @click="props.closeFormAdd" class="btn-close" data-bs-dismiss="modal"
             aria-label="Close"></button>
         </div>
+        <p class="m-4 mt-2 mb-0 ">Quedan{{ ' ' + arrayTest.values.length + ' ' }}de{{ ' ' + arrayTest.length }}</p>
+
         <div class="modal-body">
           <!--form add by name-->
           <form @submit.prevent="_addDiagnosis" @keyup="_validData">
@@ -158,24 +160,35 @@ const message = reactive({
 })
 onMounted(async () => {
   await _getDiagnosis()
+  console.log(arrayTest.values.length)
+  console.log(arrayTest.length)
   _validData()
   let btnAdd = document.getElementById('formAdd')
   btnAdd?.click()
   console.log(arrayTest)
 })
+
+/*Methods or Functions*/
+//==========================================================================
+
 const _validData = async () => {
   fields.validatePatient = await fieldPatient(dataObject.patient)
   fields.validateResult = await fieldResult(dataObject.result)
 }
+
 const _addDiagnosis = async () => {
   try {
     let res = await addDiagnosis(dataObject)
     if (res?.statusText === 'Created') {
       message.success = res.data.Message
       message.err = ''
+      await _getDiagnosis()
+      await cleanForm()
+      console.log(arrayTest.values.length)
+      console.log(arrayTest.length)
       setTimeout(async () => {
         message.success = ''
-        location.reload()
+        //location.reload()
         //location.replace(`/diagnosis/${res.data.results.patient}`)
       }, 1500)
       //router.back()
@@ -192,7 +205,6 @@ const _getDiagnosis = async () => {
   if (diagnosisData?.statusText == 'OK') {
     //diagnosis
     diagnosis.values = diagnosisData?.data.results
-    console.log(diagnosisData?.data.results)
   }
 
   let res = await diagnosisData?.data.results.filter(
@@ -228,9 +240,7 @@ const _getDiagnosis = async () => {
   }
 }
 const cleanForm = async () => {
-  dataObject.patient = ''
-  dataObject.sex = 'F'
-  dataObject.test = 'LDH/DHL'
+  dataObject.test = ''
   dataObject.result = '0.0'
   dataObject.condition = 'activo'
   dataObject.observation = ''

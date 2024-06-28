@@ -1,200 +1,202 @@
 <template>
-  <div class="container-fluid">
-    <DiagnosisPatientList></DiagnosisPatientList>
-
+  <div class="container">
     <!--LIST-->
-    <div>
+    <div class="card mt-3 p-3">
+
       <div class="card card-title">Diagnosis</div>
-      <!--Form-->
-      <div class="card card-search">
-        <div class="row row-search">
-          <!--Add-->
-          <a @click="openModalCreate" type="button" class="col-1 icon-add" title="Create diagnosis"><i
-              class="bi-person-fill-add"> </i></a>
-          <!--Switch-->
-          <div class="col-auto">
-            <div class="form-switch form-check" title="Clasic mode">
-              <label class="form-check-label" for="switDiagnosisPatient"></label>
-              <input @click="changeFilter" type="checkbox" name="inputNameSwitch" class="form-check-input myCheck"
-                id="switDiagnosisPatient" />
+      <DiagnosisPatientList></DiagnosisPatientList>
+      <div hidden>
+        <!--Form-->
+        <div class="card card-search">
+          <div class="row row-search">
+            <!--Add-->
+            <a @click="openModalCreate" type="button" class="col-1 icon-add" title="Create diagnosis"><i
+                class="bi-person-fill-add"> </i></a>
+            <!--Switch-->
+            <div class="col-auto">
+              <div class="form-switch form-check" title="Clasic mode">
+                <label class="form-check-label" for="switDiagnosisPatient"></label>
+                <input @click="changeFilter" type="checkbox" name="inputNameSwitch" class="form-check-input myCheck"
+                  id="switDiagnosisPatient" />
+              </div>
+            </div>
+            <!--Search-->
+            <div class="col-auto">
+              <!--Search mode 1-->
+              <form v-if="filter == true" @keyup="getSearchDiagnosis">
+                <div class="row m-2">
+                  <div class="col-auto">
+                    <i class="bi-search"></i>
+                    <input v-model="text" type="search" id="inputMode1" name="inputMode1"
+                      class="form-control form-control-sm search" />
+                  </div>
+                </div>
+              </form>
+              <!--search mode 2-->
+              <form v-else @submit.prevent="getSearchDiagnosis">
+                <div class="row">
+                  <div class="col-auto">
+                    <button type="submit" class="btn-form">Search</button>
+                  </div>
+                  <div class="col-auto">
+                    <button v-if="success.length > 0 || err.length > 0" @click="getDataPages(1)" type="button"
+                      class="btn-form cancel">
+                      Exit
+                    </button>
+                    <button v-else disabled type="button" class="btn-form">Exit</button>
+                  </div>
+                  <div class="col-auto mt-1">
+                    <i class="bi-search"></i>
+                    <input v-model="text" id="inputMode2" name="inputMode2" class="form-control form-control-sm search"
+                      type="search" />
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-auto icon-print" title="Print">
+              <a @click="printPage" type="button"><i class="bi-printer"></i></a>
             </div>
           </div>
-          <!--Search-->
-          <div class="col-auto">
-            <!--Search mode 1-->
-            <form v-if="filter == true" @keyup="getSearchDiagnosis">
-              <div class="row m-2">
-                <div class="col-auto">
-                  <i class="bi-search"></i>
-                  <input v-model="text" type="search" id="inputMode1" name="inputMode1"
-                    class="form-control form-control-sm search" />
-                </div>
-              </div>
-            </form>
-            <!--search mode 2-->
-            <form v-else @submit.prevent="getSearchDiagnosis">
-              <div class="row">
-                <div class="col-auto">
-                  <button type="submit" class="btn-form">Search</button>
-                </div>
-                <div class="col-auto">
-                  <button v-if="success.length > 0 || err.length > 0" @click="getDataPages(1)" type="button"
-                    class="btn-form cancel">
-                    Exit
-                  </button>
-                  <button v-else disabled type="button" class="btn-form">Exit</button>
-                </div>
-                <div class="col-auto mt-1">
-                  <i class="bi-search"></i>
-                  <input v-model="text" id="inputMode2" name="inputMode2" class="form-control form-control-sm search"
-                    type="search" />
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="col-auto icon-print" title="Print">
-            <a @click="printPage" type="button"><i class="bi-printer"></i></a>
-          </div>
         </div>
-      </div>
-      <!--Table-->
-      <div class="scale-table">
-        <table class="table table-hover text-center">
-          <thead>
-            <tr class="thead-tr">
-              <th>
-                <i class="bi-filter"></i>
-                <button @click="sortId" class="btn btn-sm th-font-size">Id</button>
-              </th>
-              <th>
-                <i class="bi-filter"></i>
-                <button @click="sortPatient" class="btn btn-sm th-font-size">FullName</button>
-              </th>
-              <th>
-                <i class="bi-filter"></i>
-                <button @click="sortTest" class="btn btn-sm th-font-size">Test</button>
-              </th>
-              <th>
-                <i class="bi-filter"></i>
-                <button @click="sortResult" class="btn btn-sm th-font-size">Result</button>
-              </th>
-              <th>
-                <i class="bi-filter"></i>
-                <button @click="sortRangeInitial" class="btn btn-sm th-font-size">Ri</button>
-              </th>
-              <th>
-                <i class="bi-filter"></i>
-                <button @click="sortIdeal" class="btn btn-sm th-font-size">Ideal</button>
-              </th>
-              <th>
-                <i class="bi-filter"></i>
-                <button @click="sortRangeEnd" class="btn btn-sm th-font-size">Rf</button>
-              </th>
+        <!--Table-->
+        <div class="scale-table">
+          <table class="table table-hover text-center">
+            <thead>
+              <tr class="thead-tr">
+                <th>
+                  <i class="bi-filter"></i>
+                  <button @click="sortId" class="btn btn-sm th-font-size">Id</button>
+                </th>
+                <th>
+                  <i class="bi-filter"></i>
+                  <button @click="sortPatient" class="btn btn-sm th-font-size">FullName</button>
+                </th>
+                <th>
+                  <i class="bi-filter"></i>
+                  <button @click="sortTest" class="btn btn-sm th-font-size">Test</button>
+                </th>
+                <th>
+                  <i class="bi-filter"></i>
+                  <button @click="sortResult" class="btn btn-sm th-font-size">Result</button>
+                </th>
+                <th>
+                  <i class="bi-filter"></i>
+                  <button @click="sortRangeInitial" class="btn btn-sm th-font-size">Ri</button>
+                </th>
+                <th>
+                  <i class="bi-filter"></i>
+                  <button @click="sortIdeal" class="btn btn-sm th-font-size">Ideal</button>
+                </th>
+                <th>
+                  <i class="bi-filter"></i>
+                  <button @click="sortRangeEnd" class="btn btn-sm th-font-size">Rf</button>
+                </th>
 
-              <th>
-                <i class="bi-filter"></i>
-                <button @click="sortInterpretation" class="btn btn-sm th-font-size">
-                  Interpretation
-                </button>
-              </th>
-              <th>
-                <button class="btn btn-sm th-font-size">Action</button>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="search in searchDiagnosis.values" :key="search['diagnosis_id']" class="tbody-tr">
-              <td class="color-td">{{ search['diagnosis_id'] }}</td>
-              <td class="color-td">{{ search['patient'] }}</td>
-              <td class="color-td">{{ search['test'] }}</td>
-              <td class="color-td">{{ search['result'] }}</td>
-              <td class="color-td">{{ search['pi'] }}</td>
-              <td class="color-td">{{ search['ideal'] }}</td>
-              <td class="color-td">{{ search['pf'] }}</td>
-              <td class="color-td">{{ search['interpretation'] }}</td>
-              <td class="colorBarra">
-                <RouterLink :to="'/diagnosis/detail/' + search['diagnosis_id']" class="btn btn-outline-info btn-sm"
-                  title="Detail">
-                  <i class="bi-card-checklist"></i>
-                </RouterLink>
-                |
-                <button @click="openModalEdit(search['diagnosis_id'])" class="btn btn-outline-warning btn-sm"
-                  title="Edit">
-                  <i class="bi-pencil-fill"></i>
-                </button>
-                |
-                <button @click="openModalDelete(search['diagnosis_id'])" class="btn btn-outline-danger btn-sm"
-                  title="Delete">
-                  <i class="bi-trash-fill"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-          <!--Messages-->
-          <small v-if="success.length > 0" class="text-success">{{ success }}</small>
-          <small v-if="err.length > 0" class="text-danger">{{ err }}</small>
-        </table>
+                <th>
+                  <i class="bi-filter"></i>
+                  <button @click="sortInterpretation" class="btn btn-sm th-font-size">
+                    Interpretation
+                  </button>
+                </th>
+                <th>
+                  <button class="btn btn-sm th-font-size">Action</button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="search in searchDiagnosis.values" :key="search['diagnosis_id']" class="tbody-tr">
+                <td class="color-td">{{ search['diagnosis_id'] }}</td>
+                <td class="color-td">{{ search['patient'] }}</td>
+                <td class="color-td">{{ search['test'] }}</td>
+                <td class="color-td">{{ search['result'] }}</td>
+                <td class="color-td">{{ search['pi'] }}</td>
+                <td class="color-td">{{ search['ideal'] }}</td>
+                <td class="color-td">{{ search['pf'] }}</td>
+                <td class="color-td">{{ search['interpretation'] }}</td>
+                <td class="colorBarra">
+                  <RouterLink :to="'/diagnosis/detail/' + search['diagnosis_id']" class="btn btn-outline-info btn-sm"
+                    title="Detail">
+                    <i class="bi-card-checklist"></i>
+                  </RouterLink>
+                  |
+                  <button @click="openModalEdit(search['diagnosis_id'])" class="btn btn-outline-warning btn-sm"
+                    title="Edit">
+                    <i class="bi-pencil-fill"></i>
+                  </button>
+                  |
+                  <button @click="openModalDelete(search['diagnosis_id'])" class="btn btn-outline-danger btn-sm"
+                    title="Delete">
+                    <i class="bi-trash-fill"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <!--Messages-->
+            <small v-if="success.length > 0" class="text-success">{{ success }}</small>
+            <small v-if="err.length > 0" class="text-danger">{{ err }}</small>
+          </table>
+        </div>
+        <!--Pagination-->
+        <nav @click="color_td" aria-label="Page navigation">
+          <ul v-if="pagination" class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <button class="page-link size">Pages</button>
+            </li>
+            <!--First page-->
+            <li v-if="currentPage >= 2" @click="getFirstPage" class="page-item">
+              <button type="button" class="page-link size">First</button>
+            </li>
+            <li v-else @click="getFirstPage" class="page-item disabled">
+              <button type="button" class="page-link size">First</button>
+            </li>
+            <!--Previous-->
+            <li v-if="currentPage >= 2" @click="getPrevious" class="page-item">
+              <button class="page-link size" type="button">
+                <i class="bi-chevron-left"></i>
+              </button>
+            </li>
+            <li v-else @click="getPrevious" class="page-item disabled">
+              <button type="button" class="page-link size">
+                <i class="bi-chevron-left"></i>
+              </button>
+            </li>
+            <!--Pages-->
+            <li v-for="pag in totalPages()" :key="pag" @click="getDataPages(pag)" class="page-item"
+              :class="isActive(pag)">
+              <button v-if="currentPage - 1 < pag && pag < currentPage + 3" type="button" class="page-link size">
+                {{ pag }}
+              </button>
+            </li>
+            <!--Next-->
+            <li v-if="currentPage < totalPages()" @click="getNext" class="page-item">
+              <button v-if="currentPage < totalPages()" type="button" class="page-link size">
+                <i class="bi-chevron-right"></i>
+              </button>
+            </li>
+            <li v-else @click="getNext" class="page-item disabled">
+              <button type="button" class="page-link size">
+                <i class="bi-chevron-right"></i>
+              </button>
+            </li>
+            <!--Last page-->
+            <li v-if="currentPage < totalPages()" @click="getLastPage" class="page-item">
+              <button type="button" class="page-link size">Last</button>
+            </li>
+            <li v-else @click="getLastPage" class="page-item disabled">
+              <button type="button" class="page-link size">Last</button>
+            </li>
+            <!--Total-->
+            <li class="page-item disabled">
+              <button class="page-link size">Total: {{ diagnosis.values.length }}</button>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <!--Pagination-->
-      <nav @click="color_td" aria-label="Page navigation">
-        <ul v-if="pagination" class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <button class="page-link size">Pages</button>
-          </li>
-          <!--First page-->
-          <li v-if="currentPage >= 2" @click="getFirstPage" class="page-item">
-            <button type="button" class="page-link size">First</button>
-          </li>
-          <li v-else @click="getFirstPage" class="page-item disabled">
-            <button type="button" class="page-link size">First</button>
-          </li>
-          <!--Previous-->
-          <li v-if="currentPage >= 2" @click="getPrevious" class="page-item">
-            <button class="page-link size" type="button">
-              <i class="bi-chevron-left"></i>
-            </button>
-          </li>
-          <li v-else @click="getPrevious" class="page-item disabled">
-            <button type="button" class="page-link size">
-              <i class="bi-chevron-left"></i>
-            </button>
-          </li>
-          <!--Pages-->
-          <li v-for="pag in totalPages()" :key="pag" @click="getDataPages(pag)" class="page-item"
-            :class="isActive(pag)">
-            <button v-if="currentPage - 1 < pag && pag < currentPage + 3" type="button" class="page-link size">
-              {{ pag }}
-            </button>
-          </li>
-          <!--Next-->
-          <li v-if="currentPage < totalPages()" @click="getNext" class="page-item">
-            <button v-if="currentPage < totalPages()" type="button" class="page-link size">
-              <i class="bi-chevron-right"></i>
-            </button>
-          </li>
-          <li v-else @click="getNext" class="page-item disabled">
-            <button type="button" class="page-link size">
-              <i class="bi-chevron-right"></i>
-            </button>
-          </li>
-          <!--Last page-->
-          <li v-if="currentPage < totalPages()" @click="getLastPage" class="page-item">
-            <button type="button" class="page-link size">Last</button>
-          </li>
-          <li v-else @click="getLastPage" class="page-item disabled">
-            <button type="button" class="page-link size">Last</button>
-          </li>
-          <!--Total-->
-          <li class="page-item disabled">
-            <button class="page-link size">Total: {{ diagnosis.values.length }}</button>
-          </li>
-        </ul>
-      </nav>
     </div>
     <DiagnosisCreate v-if="showModalCreate" :close-form-create="closeModalCreate"></DiagnosisCreate>
     <DiagnosisEdit v-if="showModalEdit" :close-form-edit="closeModalEdit" :edit-id="idSelected">
     </DiagnosisEdit>
-    <DiagnosisDelete v-if="showModalDelete" :close-form-remove="closeModalDelete" :delete-id="idSelected">
+    <DiagnosisDelete v-if="showModalDelete" :close-form-delete="closeModalDelete" :delete-id="idSelected">
     </DiagnosisDelete>
   </div>
 </template>

@@ -156,8 +156,8 @@ body {
   background: rgb(255, 255, 255);
   color: #5d6160;
   border-bottom: 4px solid #c7c9ca;
-  padding: 0.8%;
-  font-size: 1.3rem;
+  padding: 1%;
+  font-size: 1.1rem;
   margin-top: 0.5rem;
   text-align: center;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -175,8 +175,9 @@ body {
 }
 
 .col-1.icon-arrow {
-  color: #48c9b0;
-  font-size: 2rem;
+  color: white;
+  background-color: #04d6ac;
+  font-size: 1rem;
 }
 
 .col-1.icon-arrow:hover {
@@ -211,6 +212,14 @@ body {
 }
 
 /*search*/
+.card.card-search1 {
+  display: flex;
+  margin-top: 2rem;
+  border: none; 
+  border-radius: 0.25rem;  
+  font-size: 0.8rem; 
+  justify-content: center;
+}
 .card.card-search {
   display: flex;
   border: none;
@@ -223,8 +232,8 @@ body {
 
 .row.row-search {
   display: flex;
-  justify-content: space-around;
-  padding-top: 6px;
+  justify-content: space-evenly;
+ 
   align-items: end;
   padding-right: 0;
 }
@@ -309,7 +318,7 @@ body {
   width: 20px;
   height: 20px;
   left: 20px;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%);
 }
 
@@ -318,9 +327,7 @@ body {
   border-radius: 0.85rem;
 }
 
-.form-control-sm.search:focus {
-  border: solid 2px rgb(21, 167, 97);
-}
+
 
 /*Table*/
 
