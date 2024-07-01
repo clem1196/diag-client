@@ -234,14 +234,10 @@ body {
   justify-content: end;
 }
 
-.row.row-search {
-  
+.row.row-search {  
   display: flex;
-    align-items: end;
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
-    justify-content: space-around;
-  
+    align-items: end;   
+    justify-content: space-evenly;  
 }
 
 .row.align-search {
