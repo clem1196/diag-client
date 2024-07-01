@@ -4,6 +4,10 @@
 }*/
 
 /*App.vue*/
+
+.thead-tr{
+  font-size: xx-small;
+}
 .navbar.navbar-expand-lg.navbar-dark.success {
   background-color: #00a080;
   color: #f7fffd;
@@ -338,7 +342,7 @@ body {
 }
 
 .tbody-tr {
-  font-size: small;
+  font-size: 0.70rem;
   background-color: #f2f3f4;
   text-align: center;
   text-decoration: none;
@@ -351,21 +355,24 @@ a:active {
 }
 
 .size-pencil {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: rgb(243, 170, 87);
   margin: 4px;
+  cursor: pointer;
 }
 
 .size-trash {
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   color: #d65beb;
   margin: 4px;
+  cursor: pointer;
 }
 
 .size-checklist {
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   margin: 4px;
   color: #60beac;
+  cursor: pointer;
 }
 
 /*Pagination*/

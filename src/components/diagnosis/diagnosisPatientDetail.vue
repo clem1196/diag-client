@@ -116,21 +116,18 @@
                 <!--<td class="color-td">{{ search['ideal'] }}</td>-->
                 <!--<td class="color-td">{{ search['pf'] }}</td>-->
                 <td class="color-td">{{ search['interpretation'] }}</td>
-                <td class="colorBarra">
-                  <RouterLink :to="'/diagnosis/detail/' + search['diagnosis_id']" class="btn btn-outline-info btn-sm"
-                    title="Detail">
-                    <i class="bi-card-checklist"></i>
+                <td>
+                  <RouterLink :to="'/diagnosis/detail/' + search['diagnosis_id']" title="Detail">
+                    <i class="bi-card-checklist size-checklist"></i>
                   </RouterLink>
                   |
-                  <button @click="openModalEdit(search['diagnosis_id'])" class="btn btn-outline-warning btn-sm"
-                    title="Edit">
-                    <i class="bi-pencil-fill"></i>
-                  </button>
+                  <a @click="openModalEdit(search['diagnosis_id'])" title="Edit">
+                    <i class="bi-pencil-fill size-pencil "></i>
+                  </a>
                   |
-                  <button @click="openModalDelete(search['diagnosis_id'])" class="btn btn-outline-danger btn-sm"
-                    title="Delete">
-                    <i class="bi-trash-fill"></i>
-                  </button>
+                  <a @click="openModalDelete(search['diagnosis_id'])" title="Delete">
+                    <i class="bi-trash-fill size-trash "></i>
+                  </a>
                 </td>
               </tr>
             </tbody>
