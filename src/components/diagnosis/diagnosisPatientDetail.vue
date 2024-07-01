@@ -67,66 +67,68 @@
           </div>
         </div>
         <!--Table-->
-        <div class="scale-table">
-          <table class="table table-hover text-center">
+        <div>
+          <table class="table table-hover table-responsive text-center">
             <thead>
               <tr class="thead-tr">
                 <th hidden>
                   <i class="bi-filter"></i>
-                  <button @click="sortId" class="btn btn-sm th-font-size">Id</button>
+                  <button @click="sortId" class="btn btn-sm ">Id</button>
                 </th>
                 <th>
                   <i class="bi-filter"></i>
-                  <button @click="sortTest" class="btn btn-sm th-font-size">Test</button>
+                  <button @click="sortTest" class="btn btn-sm">Test</button>
                 </th>
                 <th>
                   <i class="bi-filter"></i>
-                  <button @click="sortResult" class="btn btn-sm th-font-size">Result</button>
+                  <button @click="sortResult" class="btn btn-sm ">Res</button>
                 </th>
                 <th hidden>
                   <i class="bi-filter"></i>
-                  <button @click="sortRangeInitial" class="btn btn-sm th-font-size">Ri</button>
+                  <button @click="sortRangeInitial" class="btn btn-sm ">Ri</button>
                 </th>
                 <th hidden>
                   <i class="bi-filter"></i>
-                  <button @click="sortIdeal" class="btn btn-sm th-font-size">Ideal</button>
+                  <button @click="sortIdeal" class="btn btn-sm ">Ideal</button>
                 </th>
                 <th hidden>
                   <i class="bi-filter"></i>
-                  <button @click="sortRangeEnd" class="btn btn-sm th-font-size">Rf</button>
+                  <button @click="sortRangeEnd" class="btn btn-sm ">Rf</button>
                 </th>
 
                 <th>
                   <i class="bi-filter"></i>
-                  <button @click="sortInterpretation" class="btn btn-sm th-font-size">
+                  <button @click="sortInterpretation" class="btn btn-sm ">
                     Interp
                   </button>
                 </th>
                 <th>
-                  <button class="btn btn-sm th-font-size">Action</button>
+                  <button class="btn btn-sm ">Action</button>
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="search in searchDiagnosis.values" :key="search['diagnosis_id']" class="tbody-tr">
                 <!--<td class="color-td">{{ search['diagnosis_id'] }}</td>-->
-                <td class="color-td">{{ search['test'] }}</td>
+                <td class="color-td font-size-test">{{ search['test'] }}</td>
                 <td class="color-td">{{ search['result'] }}</td>
                 <!--<td class="color-td">{{ search['pi'] }}</td>-->
                 <!--<td class="color-td">{{ search['ideal'] }}</td>-->
                 <!--<td class="color-td">{{ search['pf'] }}</td>-->
                 <td class="color-td">{{ search['interpretation'] }}</td>
                 <td class="colorBarra">
-                  <RouterLink :to="'/diagnosis/detail/' + search['diagnosis_id']" class="btn btn-info btn-sm"
+                  <RouterLink :to="'/diagnosis/detail/' + search['diagnosis_id']" class="btn btn-outline-info btn-sm"
                     title="Detail">
                     <i class="bi-card-checklist"></i>
                   </RouterLink>
                   |
-                  <button @click="openModalEdit(search['diagnosis_id'])" class="btn btn-warning btn-sm" title="Edit">
+                  <button @click="openModalEdit(search['diagnosis_id'])" class="btn btn-outline-warning btn-sm"
+                    title="Edit">
                     <i class="bi-pencil-fill"></i>
                   </button>
                   |
-                  <button @click="openModalDelete(search['diagnosis_id'])" class="btn btn-danger btn-sm" title="Delete">
+                  <button @click="openModalDelete(search['diagnosis_id'])" class="btn btn-outline-danger btn-sm"
+                    title="Delete">
                     <i class="bi-trash-fill"></i>
                   </button>
                 </td>

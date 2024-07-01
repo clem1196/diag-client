@@ -189,7 +189,7 @@ body {
   color: whitesmoke;
   background-color: #48c9b0;
   border-radius: 0.4rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
 }
 
 .col-auto.icon-print:hover {
@@ -232,9 +232,11 @@ body {
 
 .row.row-search {
   
-  align-items: end;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
+  display: flex;
+    align-items: end;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    justify-content: space-around;
   
 }
 
@@ -331,13 +333,8 @@ body {
 
 /*Table*/
 
-/*.scale-table{
-  height: 280px;
-}*/
-
-.th-font-size {
-  font-size: 0.9rem;
-  color: #000000;
+.font-size-test{
+  font-size: x-small;
 }
 
 .tbody-tr {
@@ -383,7 +380,7 @@ a:active {
 }
 
 .page-link.size {
-  font-size: 0.85rem;
+  font-size: 0.80rem;
   color: #000000;
 }
 
