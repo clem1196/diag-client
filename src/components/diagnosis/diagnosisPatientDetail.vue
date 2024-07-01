@@ -70,11 +70,10 @@
           <table class="table table-hover text-center">
             <thead>
               <tr class="thead-tr">
-                <th>
+                <th hidden>
                   <i class="bi-filter"></i>
                   <button @click="sortId" class="btn btn-sm th-font-size">Id</button>
                 </th>
-
                 <th>
                   <i class="bi-filter"></i>
                   <button @click="sortTest" class="btn btn-sm th-font-size">Test</button>
@@ -83,15 +82,15 @@
                   <i class="bi-filter"></i>
                   <button @click="sortResult" class="btn btn-sm th-font-size">Result</button>
                 </th>
-                <th>
+                <th hidden>
                   <i class="bi-filter"></i>
                   <button @click="sortRangeInitial" class="btn btn-sm th-font-size">Ri</button>
                 </th>
-                <th>
+                <th hidden>
                   <i class="bi-filter"></i>
                   <button @click="sortIdeal" class="btn btn-sm th-font-size">Ideal</button>
                 </th>
-                <th>
+                <th hidden>
                   <i class="bi-filter"></i>
                   <button @click="sortRangeEnd" class="btn btn-sm th-font-size">Rf</button>
                 </th>
@@ -109,12 +108,12 @@
             </thead>
             <tbody>
               <tr v-for="search in searchDiagnosis.values" :key="search['diagnosis_id']" class="tbody-tr">
-                <td class="color-td">{{ search['diagnosis_id'] }}</td>
+                <!--<td class="color-td">{{ search['diagnosis_id'] }}</td>-->
                 <td class="color-td">{{ search['test'] }}</td>
                 <td class="color-td">{{ search['result'] }}</td>
-                <td class="color-td">{{ search['pi'] }}</td>
-                <td class="color-td">{{ search['ideal'] }}</td>
-                <td class="color-td">{{ search['pf'] }}</td>
+                <!--<td class="color-td">{{ search['pi'] }}</td>-->
+                <!--<td class="color-td">{{ search['ideal'] }}</td>-->
+                <!--<td class="color-td">{{ search['pf'] }}</td>-->
                 <td class="color-td">{{ search['interpretation'] }}</td>
                 <td class="colorBarra">
                   <RouterLink :to="'/diagnosis/detail/' + search['diagnosis_id']" class="btn btn-outline-info btn-sm"
