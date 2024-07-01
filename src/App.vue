@@ -15,20 +15,20 @@
             <li class="nav-item">
               <RouterLink class="nav-link my-focus" id="about" to="/about">About</RouterLink>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item active">
               <RouterLink class="nav-link my-focus" id="modules" to="/diagnosis">diagnosis</RouterLink>
-            </li>
+            </li>-->
             <li class="nav-item">
               <RouterLink v-if="$route.params.name !== undefined" class="nav-link my-focus" id="modules"
                 :to="'/diagnosis/' + $route.params.name">Diagnosis by patients
               </RouterLink>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
               <RouterLink v-if="$route.params.name !== undefined" class="nav-link my-focus" id="modules"
                 :to="'/diagnosis/graphics/' + $route.params.name">
                 Graphics by patients
               </RouterLink>
-            </li>
+            </li>-->
           </ul>
           <div v-if="loggedIn == true" class="d-flex myFlex">
             <ul class="navbar-nav">

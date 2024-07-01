@@ -68,7 +68,7 @@
         </div>
         <!--Table-->
         <div>
-          <table class="table table-hover table-responsive text-center">
+          <table class="table table-hover text-center">
             <thead>
               <tr class="thead-tr">
                 <th hidden>

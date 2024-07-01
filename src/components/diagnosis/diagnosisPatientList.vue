@@ -111,18 +111,14 @@ const closeModalCreate = () => {
 }
 //search
 const getSearchDiagnosis = () => {
-  console.log(diagnosis.values)
   if (diagnosis.values.length > 0) {
-    if (text.value.length == 0 && diagnosis.values.length > 0) {
+    if (text.value.length === 0) {
       getDataPages(1)
     } else {
       const filterItems = (query: string) => {
         const diagnosisValues: any = diagnosis.values
         return diagnosisValues.filter(
-          (diag: _diagnosis) =>
-            diag.patient !== null &&
-            diag.patient !== undefined &&
-            diag.patient.toLowerCase().indexOf(query.toLowerCase()) > -1
+          (diag: _diagnosis) => diag.patient.toLowerCase() === query.toLowerCase()
         )
       }
       if (filterItems(text.value).length > 0) {
@@ -135,7 +131,7 @@ const getSearchDiagnosis = () => {
         searchDiagnosis.values = arrayEmpty.values
         pagination.value = false
         success.value = ''
-        err.value = 'No records found'
+        err.value = 'No se encontró, ningun registro para' + ' "' + text.value + '" ' + 'vuelva a intentar'
       }
     }
   }
