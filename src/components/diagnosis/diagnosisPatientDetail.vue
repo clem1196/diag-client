@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!--LIST-->
-    <div class="card mt-3 p-4">
+    <div class="card mt-3 p-3">
       <div class="col-1">
         <button @click="$router.back()" class="btn btn-success" type="button">Salir</button>
       </div>
@@ -20,13 +20,14 @@
             <a @click="openModalAdd" type="button" class="col-1 icon-add" title="Add diagnosis"><i
                 class="bi-person-fill-add"> </i></a>
             <!--Switch-->
-            <div class="col-auto">
+            <!--<div class="col-auto">
               <div class="form-switch form-check" title="Clasic mode">
                 <label class="form-check-label" for="switDiagnosisPatient"></label>
                 <input @click="changeFilter" type="checkbox" name="inputNameSwitch" class="form-check-input myCheck"
                   id="switDiagnosisPatient" />
               </div>
-            </div>
+            </div>-->
+
             <!--Search-->
             <div class="col-auto">
               <!--Search mode 1-->
@@ -61,7 +62,7 @@
               </form>
             </div>
             <div class="col-auto icon-print" title="Print">
-              <a @click="printPage" type="button"><i class="bi-printer"></i></a>
+              <a @click="printPage"><i class="bi-printer"></i></a>
             </div>
           </div>
         </div>
@@ -98,7 +99,7 @@
                 <th>
                   <i class="bi-filter"></i>
                   <button @click="sortInterpretation" class="btn btn-sm th-font-size">
-                    Interpretation
+                    Interp
                   </button>
                 </th>
                 <th>
@@ -116,18 +117,16 @@
                 <!--<td class="color-td">{{ search['pf'] }}</td>-->
                 <td class="color-td">{{ search['interpretation'] }}</td>
                 <td class="colorBarra">
-                  <RouterLink :to="'/diagnosis/detail/' + search['diagnosis_id']" class="btn btn-outline-info btn-sm"
+                  <RouterLink :to="'/diagnosis/detail/' + search['diagnosis_id']" class="btn btn-info btn-sm"
                     title="Detail">
                     <i class="bi-card-checklist"></i>
                   </RouterLink>
                   |
-                  <button @click="openModalEdit(search['diagnosis_id'])" class="btn btn-outline-warning btn-sm"
-                    title="Edit">
+                  <button @click="openModalEdit(search['diagnosis_id'])" class="btn btn-warning btn-sm" title="Edit">
                     <i class="bi-pencil-fill"></i>
                   </button>
                   |
-                  <button @click="openModalDelete(search['diagnosis_id'])" class="btn btn-outline-danger btn-sm"
-                    title="Delete">
+                  <button @click="openModalDelete(search['diagnosis_id'])" class="btn btn-danger btn-sm" title="Delete">
                     <i class="bi-trash-fill"></i>
                   </button>
                 </td>
