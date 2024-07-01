@@ -168,14 +168,17 @@ body {
 }
 
 /*icon-add*/
-.col-1.icon-add {
-  color: #f1fffc;
+.col-auto.icon-add {
+  color: #389c88;
   border-radius: 0.25rem;
-  font-size: 2.4rem;
+  background-color: #e2f2ef;
+  font-size: 2rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
 }
 
 .col-1.icon-add:hover {
-  color: #ffffff;
+  color: #0a7a62;
 }
 
 .col-1.icon-arrow {
@@ -189,15 +192,17 @@ body {
 }
 
 .col-auto.icon-print {
-  font-size: 1.8rem;
-  color: whitesmoke;
-  background-color: #48c9b0;
+  font-size: 2rem;
+  color: #697d79;
+  background-color: #e2f2ef;
+  
   border-radius: 0.4rem;
-  margin-bottom: 0.2rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem
 }
 
 .col-auto.icon-print:hover {
-  color: #5af7d8;
+  color: #414443;
   cursor: pointer;
 }
 
@@ -227,9 +232,9 @@ body {
 .card.card-search {
   display: flex;
   border: none;
-  background-color: #48c9b0;
+  background-color: #c9deda;
   border-radius: 0.25rem;
-  border-bottom: 8px solid #45b7a0;
+  
   font-size: 0.8rem;
   justify-content: end;
 }
@@ -377,9 +382,9 @@ a:active {
   padding: 0.5rem;
   list-style: none;
   flex-wrap: wrap;
-  background-color: #48c9b0;
+  background-color: #cedcd9;
   border-radius: 0.25rem;
-  border-bottom: 8px solid #45b7a0;
+ 
 }
 
 .page-link.size {
