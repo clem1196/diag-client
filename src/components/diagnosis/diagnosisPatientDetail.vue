@@ -67,7 +67,7 @@
           </div>
         </div>
         <!--Table-->
-        <div>
+        <div class="scale-table">
           <table class="table table-hover table-responsive-sm text-center">
             <thead>
               <tr class="thead-tr">
