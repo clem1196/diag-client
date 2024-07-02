@@ -4,12 +4,7 @@
       <!--Form-->
       <div class="card card-search1">
         <div class="row row-search">
-          <div class="col-auto">
-            <!--Add-->
-            <a @click="openModalCreate" title="Create diagnosis" type="button">
-              No tiene aún? crea Aquí<i class="bi-plus-square-fill"></i>
-            </a>
-          </div>
+
           <!--Search-->
           <div class="col-auto">
             <!--search mode 2-->
@@ -35,6 +30,12 @@
 
               </div>
             </form>
+          </div>
+          <div class="col-auto">
+            <!--Add-->
+            <a @click="openModalCreate" title="Create diagnosis" type="button">
+              <h8> No tiene aún? crea Aquí</h8><i class="bi-plus-square-fill"></i>
+            </a>
           </div>
         </div>
       </div>

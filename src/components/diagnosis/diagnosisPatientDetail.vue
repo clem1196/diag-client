@@ -73,32 +73,32 @@
               <tr class="thead-tr">
                 <th hidden>
                   <i class="bi-filter"></i>
-                  <button @click="sortId" class="btn btn-sm ">Id</button>
+                  <button @click="sortId" class="btn btn-sm " title="Id">Id</button>
                 </th>
                 <th>
                   <i class="bi-filter"></i>
-                  <button @click="sortTest" class="btn btn-sm">Test</button>
+                  <button @click="sortTest" class="btn btn-sm" title="Tipo de prueba">Test</button>
                 </th>
                 <th>
                   <i class="bi-filter"></i>
-                  <button @click="sortResult" class="btn btn-sm ">Res</button>
+                  <button @click="sortResult" class="btn btn-sm " title="Valor de la prueba clínica">Res</button>
                 </th>
                 <th hidden>
                   <i class="bi-filter"></i>
-                  <button @click="sortRangeInitial" class="btn btn-sm ">Ri</button>
+                  <button @click="sortRangeInitial" class="btn btn-sm " title="rango inicial">Ri</button>
                 </th>
                 <th hidden>
                   <i class="bi-filter"></i>
-                  <button @click="sortIdeal" class="btn btn-sm ">Ideal</button>
+                  <button @click="sortIdeal" class="btn btn-sm " title="Rango ideal">Ideal</button>
                 </th>
                 <th hidden>
                   <i class="bi-filter"></i>
-                  <button @click="sortRangeEnd" class="btn btn-sm ">Rf</button>
+                  <button @click="sortRangeEnd" class="btn btn-sm " title="Rango final">Rf</button>
                 </th>
 
                 <th>
                   <i class="bi-filter"></i>
-                  <button @click="sortInterpretation" class="btn btn-sm ">
+                  <button @click="sortInterpretation" class="btn btn-sm " title="Interpretación del resultado">
                     Interp
                   </button>
                 </th>
