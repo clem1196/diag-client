@@ -26,7 +26,7 @@
                   </button>
                   <button v-else disabled type="button" class="btn btn-light btn-sm">x</button>
                 </div>
-                <div class="col-auto">
+                <div class="col-auto mt-4">
                   <!--Add-->
                   <a @click="openModalCreate" title="Create diagnosis" type="button">
                     <h8> No tiene aún? crea Aquí</h8><i class="bi-plus-square-fill"></i>
