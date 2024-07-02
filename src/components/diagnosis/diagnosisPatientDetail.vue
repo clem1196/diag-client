@@ -3,7 +3,7 @@
     <!--LIST-->
     <div class="card mt-3 p-3">
       <div class="col-1">
-        <button @click="$router.back()" class="btn btn-success" type="button">Salir</button>
+        <button @click="$router.back()" class="btn btn-salir" type="button">Salir</button>
       </div>
       <div v-if="$route.params.name !== undefined">
         <div v-if="diagnosis.values.length === 13" class="card card-title">
@@ -68,7 +68,7 @@
         </div>
         <!--Table-->
         <div class="scale-table">
-          <table class="table table-hover table-responsive-sm text-center">
+          <table class="table size-static table-hover table-responsive-sm text-center">
             <thead>
               <tr class="thead-tr">
                 <th hidden>
@@ -140,7 +140,7 @@
         <nav @click="color_td" aria-label="Page navigation">
           <ul v-if="pagination" class="pagination justify-content-center">
             <li class="page-item disabled">
-              <button class="page-link size">Pages</button>
+              <button disabled class="page-link size">Pages</button>
             </li>
             <!--First page-->
             <li v-if="currentPage >= 2" @click="getFirstPage" class="page-item">
@@ -191,7 +191,12 @@
             </li>
           </ul>
         </nav>
-        <DiagnosisGraphics></DiagnosisGraphics>
+        <div class="card card-title">
+          Graphics
+        </div>
+        <div>
+          <DiagnosisGraphics></DiagnosisGraphics>
+        </div>
       </div>
       <DiagnosisAdd v-if="showModalAdd" :close-form-add="closeModalAdd"></DiagnosisAdd>
       <DiagnosisEdit v-if="showModalEdit" :close-form-edit="closeModalEdit" :edit-id="idSelected">

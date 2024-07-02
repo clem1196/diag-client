@@ -160,7 +160,7 @@ const getDataPages = async (numPage: number) => {
 
 <style lang="css" scoped>
 .bi-plus-square-fill {
-  color: seagreen;
+  color: #24b699;
   font-size: 1.5rem;
   margin-left: 0.5rem;
 

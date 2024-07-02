@@ -1,16 +1,33 @@
-/*:root {
-    --bs-green: #00FFCC;
-    --bs-btnFormSave: #33CC99;    
-}*/
-
+:root {
+  --bs-verde: #24b699;
+    --bs-verdeOscuro: #2e9d86;
+    --bs-madera: #fffae5;   
+    --bs-maderaClaro: #FFF8DC;
+    --bs-anaranjadoClaro: #fffdf7;
+    --bs-anaranjado: #ffcd5a;  
+    --bs-anaranjadoOscuro: #df7935;  
+    --bs-marronOscuro: #5e5953; 
+    --bs-marron: #908980;  
+    --bs-marronClaro: #bfbebc; 
+}
+/*diagnosisPatientDetail*/
+.btn.btn-salir{
+  background-color: var(--bs-verde);
+  color: white;
+  border: none;
+  }
+  .btn.btn-salir:hover{
+    background-color: var(--bs-verdeOscuro);
+    color: whitesmoke;
+    }
 /*App.vue*/
 
 .thead-tr{
-  font-size: xx-small;
+  font-size: xx-small; 
 }
 .navbar.navbar-expand-lg.navbar-dark.success {
-  background-color: #00a080;
-  color: #f7fffd;
+  background-color: var(--bs-verde);
+  
 }
 
 .welcome {
@@ -169,32 +186,35 @@ body {
 
 /*icon-add*/
 .col-auto.icon-add {
-  color: #389c88;
+  color: var(--bs-verde);
   border-radius: 0.25rem;
-  background-color: #e2f2ef;
-  font-size: 2rem;
+  background-color: white;
+  font-size: 1.5rem;
   margin-top: 0.4rem;
   margin-bottom: 0.4rem;
 }
-
+.col-auto.icon-add:hover {
+  color: var(--bs-verdeOscuro);
+  
+}
 .col-1.icon-add:hover {
-  color: #0a7a62;
+  color: var(--bs-verdeOscuro);
 }
 
 .col-1.icon-arrow {
   color: white;
-  background-color: #04d6ac;
+  background-color: var(--bs-verde);
   font-size: 1rem;
 }
 
 .col-1.icon-arrow:hover {
-  color: #389c88;
+  color: var(--bs-verdeOscuro);
 }
 
 .col-auto.icon-print {
-  font-size: 2rem;
-  color: #697d79;
-  background-color: #e2f2ef;
+  font-size: 1.5rem;
+  color: var(--bs-verde);
+  background-color: white;
   
   border-radius: 0.4rem;
   margin-top: 0.4rem;
@@ -202,7 +222,7 @@ body {
 }
 
 .col-auto.icon-print:hover {
-  color: #414443;
+  color: var(--bs-verdeOscuro);
   cursor: pointer;
 }
 
@@ -232,7 +252,7 @@ body {
 .card.card-search {
   display: flex;
   border: none;
-  background-color: #c9deda;
+  background-color: var(--bs-verde);
   border-radius: 0.25rem;
   
   font-size: 0.8rem;
@@ -332,6 +352,7 @@ body {
 .form-control-sm.search {
   padding-left: 1.5rem;
   border-radius: 0.85rem;
+  background-color: white;
 }
 
 
@@ -346,7 +367,11 @@ body {
   font-size: 0.70rem;
   background-color: #f2f3f4;
   text-align: center;
-  text-decoration: none;
+  text-decoration: none; 
+}
+.table.size-static{
+  position: static;  
+  height: 10rem;
 }
 
 a:link,
@@ -357,14 +382,14 @@ a:active {
 
 .size-pencil {
   font-size: 0.8rem;
-  color: rgb(243, 170, 87);
+  color: var(--bs-anaranjado);
   margin: 4px;
   cursor: pointer;
 }
 
 .size-trash {
   font-size: 0.8rem;
-  color: #d65beb;
+  color: var(--bs-anaranjadoOscuro);
   margin: 4px;
   cursor: pointer;
 }
@@ -382,22 +407,28 @@ a:active {
   padding: 0.5rem;
   list-style: none;
   flex-wrap: wrap;
-  background-color: #cedcd9;
+  background-color: var(--bs-verde);
   border-radius: 0.25rem;
+  border: 1px solid gainsboro;
  
 }
 
 .page-link.size {
   font-size: 0.80rem;
-  color: #000000;
+  color: var(--bs-marronOscuro);
+  background-color: none;
 }
-
+.page-link.size:hover {
+  font-size: 0.80rem;
+  color: white;
+  background-color: var(--bs-verde);
+}
 .active > .page-link.size {
   z-index: 3;
-  color: white;
-  background-color: #48c9b0;
-  border-color: gainsboro;
-  border-radius: 0.25rem;
+  color: var(--bs-maderaClaro);
+  background-color: var(--bs-verde);
+  border-color: white;
+ 
 }
 
 /*modal-form add edit*/
