@@ -10,32 +10,46 @@
             <!--search mode 2-->
             <form @submit.prevent="getSearchDiagnosis">
               <div class="row">
-                <div class="col-auto ">
-                  <button type="submit" class="btn btn-sm  btn-search">Buscar</button>
-                </div>
+                <div class="col-auto mt-2">Nombre o DNI.</div>
                 <div class="col-auto">
                   <i class="bi-search"></i>
                   <input v-model="text" id="inputMode2" name="inputMode2" class="form-control form-control-sm search"
                     type="search" />
                 </div>
-
-                <div class="col-1">
+                <div class="col-auto ">
+                  <button type="submit" class="btn btn-sm  btn-search">Buscar</button>
+                </div>
+                <div class="col-auto">
                   <button v-if="success.length > 0 || err.length > 0" @click="getDataPages(1)" type="button"
                     class="btn btn-light btn-sm">
                     X
                   </button>
                   <button v-else disabled type="button" class="btn btn-light btn-sm">x</button>
                 </div>
-                <div class="col-auto mt-4">
-                  <!--Add-->
-                  <a @click="openModalCreate" title="Create diagnosis" type="button">
-                    <h8> No tiene aún? crea Aquí</h8><i class="bi-plus-square-fill"></i>
-                  </a>
-                </div>
+
               </div>
             </form>
           </div>
-
+          <div class=" mt-5">
+            <!--Add-->
+            Si eres nuevo registre su prueba de laboratorio tales como:
+            'LDH/DHL',
+            'GLUCOSA',
+            'COL. TOTAL',
+            'TRIGLICERIDOS',
+            'UREA',
+            'Co2',
+            'VCM',
+            'RDW ADE IDE',
+            'GGTP',
+            'TGO AST',
+            'TGP ALT',
+            'ACIDO URICO' y
+            'HEMOGLOBINA'
+            <a @click="openModalCreate" title="Registre aquí el resultado de su prueba clínico" type="button">
+              Aquí<i class="bi-plus-square-fill"></i>
+            </a>
+          </div>
         </div>
       </div>
       <!--Table-->

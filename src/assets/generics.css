@@ -243,7 +243,7 @@ body {
 /*search*/
 .card.card-search1 {
   display: flex;
-  margin-top: 2rem;
+  margin-top: 1rem;
   border: none; 
   border-radius: 0.25rem;  
   font-size: 0.8rem; 
@@ -360,13 +360,15 @@ body {
   width: 20px;
   height: 20px;
   left: 20px;
-  top: 45%;
+  top: 50%;
+ 
   transform: translateY(-50%);
 }
 
 .form-control-sm.search {
   padding-left: 1.5rem;
   margin-left: 0;
+  width: 7rem;
   border-radius: 0.85rem;
   background-color: white;
 }

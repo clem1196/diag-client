@@ -2,7 +2,7 @@
   <div class="container">
     <!--LIST-->
     <div class="card mt-3 p-3">
-      <div class="card card-title">Pacientes</div>
+      <div class="card card-title">Lectura y Análisis de pruebas de Laboratorio Clínico</div>
       <DiagnosisPatientList></DiagnosisPatientList>
       <div hidden>
         <!--Form-->
