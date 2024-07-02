@@ -3,7 +3,7 @@
     <!-- Button trigger modal -->
     <button type="button" id="btnEdit" hidden class="btn btn-primary" data-bs-toggle="modal"
       data-bs-target="#staticBackdrop">
-      Launch static backdrop modal
+      Edit
     </button>
 
     <!-- Modal -->
@@ -12,7 +12,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <!--<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>-->
             <button @click="props.closeFormEdit" type="button" class="btn-close" data-bs-dismiss="modal"
               aria-label="Close"></button>
           </div>
