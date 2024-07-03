@@ -72,4 +72,18 @@ let email = ref('')
 onMounted(async () => { })
 </script>
 
-<style></style>
+<style lang="css" scoped>
+.navbar.navbar-expand-lg.navbar-dark.success {
+  background-color: var(--bs-verde);
+
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  color: #e3f2fd;
+  font-style: italic;
+  margin-left: 16px;
+  justify-content: center;
+}
+</style>

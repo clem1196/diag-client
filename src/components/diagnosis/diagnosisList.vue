@@ -560,8 +560,65 @@ const getLastPage = () => {
 </script>
 
 <style lang="css">
+:root {
+  --bs-verde: #24b699;
+  --bs-verdeOscuro: #2e9d86;
+  --bs-madera: #fffae5;
+  --bs-maderaClaro: #FFF8DC;
+  --bs-anaranjadoClaro: #fffdf7;
+  --bs-anaranjado: #ffcd5a;
+  --bs-anaranjadoOscuro: #df7935;
+  --bs-marronOscuro: #5e5953;
+  --bs-marron: #908980;
+  --bs-marronClaro: #bfbebc;
+}
+
 td.colorBarra {
   color: white;
 
+}
+
+.thead-tr {
+  font-size: xx-small;
+}
+
+.card.card-search {
+  display: flex;
+  border: none;
+  background-color: var(--bs-verde);
+  border-radius: 0.25rem;
+
+  font-size: 0.8rem;
+  justify-content: end;
+}
+
+.row.row-search {
+  display: flex;
+  align-items: end;
+  width: auto;
+
+}
+
+.form-switch.form-check {
+  padding-left: 4rem;
+}
+
+.form-check-input {
+  background-color: #e6fff6;
+  border-color: #d0d0d1;
+  cursor: pointer;
+  font-size: large;
+  margin-bottom: 0.8rem;
+}
+
+.form-check-input:hover {
+  background-color: #ffffff;
+  border-color: #a6a7a8;
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #00ffaa !important;
+  border-color: #04feaa !important;
 }
 </style>

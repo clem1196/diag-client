@@ -50,7 +50,8 @@
             'TGP ALT',
             'ACIDO URICO' y
             'HEMOGLOBINA'
-            <a @click="openModalCreate" title="Registre aquí el resultado de su prueba clínico" type="button">
+            <a @click="openModalCreate" title="Registre aquí el resultado de su prueba clínico" type="button"
+              class="text-primary">
               Aquí<i class="bi-plus-square-fill"></i>
             </a>
           </div>
@@ -175,10 +176,43 @@ const getDataPages = async (numPage: number) => {
 </script>
 
 <style lang="css" scoped>
+:root {
+  --bs-verde: #24b699;
+  --bs-verdeOscuro: #2e9d86;
+  --bs-madera: #fffae5;
+  --bs-maderaClaro: #FFF8DC;
+  --bs-anaranjadoClaro: #fffdf7;
+  --bs-anaranjado: #ffcd5a;
+  --bs-anaranjadoOscuro: #df7935;
+  --bs-marronOscuro: #5e5953;
+  --bs-marron: #908980;
+  --bs-marronClaro: #bfbebc;
+}
+
 .bi-plus-square-fill {
-  color: #24b699;
+  color: var(--bs-verde);
   font-size: 1.5rem;
   margin-left: 0.5rem;
+
+}
+
+.thead-tr {
+  font-size: xx-small;
+}
+
+.card.card-search1 {
+  display: flex;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  justify-content: center;
+}
+
+.row.row-search {
+  display: flex;
+  align-items: end;
+  width: auto;
 
 }
 </style>

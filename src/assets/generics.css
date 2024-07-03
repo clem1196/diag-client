@@ -1,46 +1,14 @@
 :root {
   --bs-verde: #24b699;
-    --bs-verdeOscuro: #2e9d86;
-    --bs-madera: #fffae5;   
-    --bs-maderaClaro: #FFF8DC;
-    --bs-anaranjadoClaro: #fffdf7;
-    --bs-anaranjado: #ffcd5a;  
-    --bs-anaranjadoOscuro: #df7935;  
-    --bs-marronOscuro: #5e5953; 
-    --bs-marron: #908980;  
-    --bs-marronClaro: #bfbebc; 
-}
-/*diagnosisPatientDetail*/
-.btn.btn-salir{
-  background-color: var(--bs-verde);
-  color: white;
-  border: none;
-  }
-  .btn.btn-salir:hover{
-    background-color: var(--bs-verdeOscuro);
-    color: whitesmoke;
-    }
-/*App.vue*/
-
-.thead-tr{
-  font-size: xx-small; 
-}
-.navbar.navbar-expand-lg.navbar-dark.success {
-  background-color: var(--bs-verde);
-  
-}
-
-.welcome {
-  display: flex;
-  flex-direction: column;
-  color: #e3f2fd;
-  font-style: italic;
-  margin-left: 16px;
-  justify-content: center;
-}
-
-.d-flex.myFlex {
-  margin-bottom: 0.3rem;
+  --bs-verdeOscuro: #2e9d86;
+  --bs-madera: #fffae5;
+  --bs-maderaClaro: #FFF8DC;
+  --bs-anaranjadoClaro: #fffdf7;
+  --bs-anaranjado: #ffcd5a;
+  --bs-anaranjadoOscuro: #df7935;
+  --bs-marronOscuro: #5e5953;
+  --bs-marron: #908980;
+  --bs-marronClaro: #bfbebc;
 }
 
 /*Login*/
@@ -156,18 +124,9 @@
   background-color: #48c9b0;
 }
 
+
+
 /*GENERAL*/
-
-/*title*/
-.return-page {
-  font-size: 2rem;
-  color: #00a080;
-}
-
-.return-page:hover {
-  font-size: 2rem;
-  color: #036e59;
-}
 
 body {
   font-family: serif;
@@ -186,23 +145,26 @@ body {
 
 /*icon-add*/
 .col-auto.icon-add {
-  color: white;  
+  color: white;
   background-color: var(--bs-verde);
   font-size: 2rem;
-  cursor: pointer; 
+  cursor: pointer;
 }
+
 .col-auto.icon-add:hover {
-  color: var(--bs-madera); 
-  
+  color: var(--bs-madera);
+
 }
+
 .col-1.icon-add:hover {
   color: var(--bs-verdeOscuro);
 }
 
 .col-1.icon-arrow {
-  color: white;
-  background-color: var(--bs-verde);
-  font-size: 1rem;
+  color: var(--bs-verdeOscuro);
+  font-size: 2rem;
+  cursor: pointer;
+
 }
 
 .col-1.icon-arrow:hover {
@@ -213,7 +175,7 @@ body {
   font-size: 1.5rem;
   color: var(--bs-verde);
   background-color: white;
-  
+
   border-radius: 0.4rem;
   margin-top: 0.4rem;
   margin-bottom: 0.4rem
@@ -239,64 +201,10 @@ body {
 }
 
 /*search*/
-.card.card-search1 {
-  display: flex;
-  margin-top: 1rem;
-  border: none; 
-  border-radius: 0.25rem;  
-  font-size: 0.8rem; 
-  justify-content: center;
-}
-.card.card-search {
-  display: flex;
-  border: none;
-  background-color: var(--bs-verde);
-  border-radius: 0.25rem;
-  
-  font-size: 0.8rem;
-  justify-content: end;
-}
-
-.row.row-search {  
-  display: flex;
-    align-items: end;   
-    width: auto;
-    
-}
-
-.row.align-search {
-  margin: 0.5rem;
-  display: flex;
-  justify-content: center;
-}
-
 .col-auto {
   flex: 0 0 auto;
   width: auto;
   position: relative;
-}
-
-.form-switch.form-check {
-  padding-left: 4rem;
-}
-
-.form-check-input {
-  background-color: #e6fff6;
-  border-color: #d0d0d1;
-  cursor: pointer;
-  font-size: large;
-  margin-bottom: 0.8rem;
-}
-
-.form-check-input:hover {
-  background-color: #ffffff;
-  border-color: #a6a7a8;
-  cursor: pointer;
-}
-
-.form-check-input:checked {
-  background-color: #00ffaa !important;
-  border-color: #04feaa !important;
 }
 
 .btn-form {
@@ -314,18 +222,20 @@ body {
   padding-top: 6px;
   margin: 3px;
 }
+
 .btn.btn-search {
-  color: white;  
+  color: white;
   background-color: var(--bs-verde);
- align-items: center;
- border-radius: 0.50rem;
-  
+  align-items: center;
+  border-radius: 0.50rem;
+
 }
+
 .btn.btn-search:hover {
-  color: white;  
+  color: white;
   background-color: var(--bs-verdeOscuro);
- align-items: center;
-  
+  align-items: center;
+
 }
 
 .btn-form:hover {
@@ -358,7 +268,7 @@ body {
   height: 20px;
   left: 20px;
   top: 50%;
- 
+
   transform: translateY(-50%);
 }
 
@@ -374,7 +284,7 @@ body {
 
 /*Table*/
 
-.font-size-test{
+.font-size-test {
   font-size: x-small;
 }
 
@@ -382,10 +292,11 @@ body {
   font-size: 0.70rem;
   background-color: #f2f3f4;
   text-align: center;
-  text-decoration: none; 
+  text-decoration: none;
 }
-.table.size-static{
-  position: static;  
+
+.table.size-static {
+  position: static;
   height: 10rem;
 }
 
@@ -425,7 +336,7 @@ a:active {
   background-color: var(--bs-verde);
   border-radius: 0.25rem;
   border: 1px solid gainsboro;
- 
+
 }
 
 .page-link.size {
@@ -433,17 +344,19 @@ a:active {
   color: var(--bs-marronOscuro);
   background-color: none;
 }
+
 .page-link.size:hover {
   font-size: 0.80rem;
   color: white;
   background-color: var(--bs-verde);
 }
-.active > .page-link.size {
+
+.active>.page-link.size {
   z-index: 3;
   color: var(--bs-maderaClaro);
   background-color: var(--bs-verde);
   border-color: white;
- 
+
 }
 
 /*modal-form add edit*/
