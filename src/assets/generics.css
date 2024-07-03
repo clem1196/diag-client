@@ -186,15 +186,13 @@ body {
 
 /*icon-add*/
 .col-auto.icon-add {
-  color: var(--bs-verde);
-  border-radius: 0.25rem;
-  background-color: white;
-  font-size: 1.5rem;
-  margin-top: 0.4rem;
-  margin-bottom: 0.4rem;
+  color: white;  
+  background-color: var(--bs-verde);
+  font-size: 2rem;
+  cursor: pointer; 
 }
 .col-auto.icon-add:hover {
-  color: var(--bs-verdeOscuro);
+  color: var(--bs-madera); 
   
 }
 .col-1.icon-add:hover {

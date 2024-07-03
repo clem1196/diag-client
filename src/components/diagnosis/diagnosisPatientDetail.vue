@@ -17,8 +17,8 @@
         <div class="card card-search">
           <div class="row row-search">
             <!--Add-->
-            <a @click="openModalAdd" type="button" class="col-auto icon-add" title="Add diagnosis"><i
-                class="bi-person-fill-add"> </i></a>
+            <a @click="openModalAdd" class="col-auto icon-add" title="Add diagnosis"><i class="bi-person-fill-add">
+              </i></a>
             <!--Switch-->
             <!--<div class="col-auto">
               <div class="form-switch form-check" title="Clasic mode">
