@@ -19,18 +19,22 @@
                 <div class="col-auto ">
                   <button type="submit" class="btn btn-sm  btn-search">Buscar</button>
                 </div>
-                <div class="col-auto">
-                  <button v-if="success.length > 0 || err.length > 0" @click="getDataPages(1)" type="button"
-                    class="btn btn-light btn-sm">
-                    X
-                  </button>
-                  <button v-else disabled type="button" class="btn btn-light btn-sm">x</button>
-                </div>
+                <!--<div class="col-auto">
+                  <button v-if="success.length > 0 || err.length > 0" type="button" @click="getDataPages(1)"
+                    class="btn-close btn-sm mt-2" aria-label="Close"></button>
+                  <button v-else hidden type="button" @click="getDataPages(1)" class="btn-close btn-sm mt-2"
+                    aria-label="Close"></button>
+                </div>-->
 
               </div>
             </form>
           </div>
-          <div class=" mt-5">
+          <div class="container text-center mt-3">
+            <!--Messages-->
+            <small v-if="success.length > 0" class="text-success">{{ success }}</small>
+            <small v-if="err.length > 0" class="text-danger">{{ err }}</small>
+          </div>
+          <div v-if="success.length === 0" class=" mt-3">
             <!--Add-->
             Si eres nuevo registre su prueba de laboratorio tales como:
             'LDH/DHL',
@@ -69,9 +73,7 @@
               </td>
             </tr>
           </tbody>
-          <!--Messages-->
-          <small v-if="success.length > 0" class="text-success">{{ success }}</small>
-          <small v-if="err.length > 0" class="text-danger">{{ err }}</small>
+
         </table>
       </div>
       <DiagnosisCreate v-if="showModalCreate" :close-form-create="closeModalCreate"></DiagnosisCreate>
@@ -138,7 +140,7 @@ const getSearchDiagnosis = () => {
       if (filterItems(text.value).length > 0) {
         searchDiagnosis.values = filterItems(text.value)
         pagination.value = false
-        success.value = searchDiagnosis.values.length + ' ' + 'records found'
+        success.value = searchDiagnosis.values.length + ' ' + 'registro encontrado'
         err.value = ''
       } else {
         let arrayEmpty: _diagnosis[] = []
