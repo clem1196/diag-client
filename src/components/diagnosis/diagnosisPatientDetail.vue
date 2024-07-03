@@ -3,7 +3,7 @@
     <!--LIST-->
     <div class="card mt-3 p-3">
       <div class="col-1">
-        <button @click="$router.back()" class="btn btn-salir" type="button">Salir</button>
+        <button @click="$router.replace('/diagnosis')" class="btn btn-salir" type="button">Salir</button>
       </div>
       <div v-if="$route.params.name !== undefined">
         <div v-if="diagnosis.values.length === 13" class="card card-title">
