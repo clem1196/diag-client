@@ -1,20 +1,39 @@
 <template>
   <div>
-    <button id="delete" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-whatever="@mdo"
-      hidden></button>
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <button
+      id="delete"
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#deleteModal"
+      data-bs-whatever="@mdo"
+      hidden
+    ></button>
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      aria-labelledby="deleteModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Delete</h5>
-            <button type="button" @click="props.closeFormDelete" class="btn-close" data-bs-dismiss="modal"
-              aria-label="Close"></button>
+            <button
+              type="button"
+              @click="props.closeFormDelete"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             {{ title }}
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-danger btn-sm" @click="_deleteDiagnosis">Yes</button>
+            <button type="submit" class="btn btn-danger btn-sm" @click="_deleteDiagnosis">
+              Yes
+            </button>
 
             <button @click="props.closeFormDelete" class="btn btn-light" data-bs-dismiss="modal">
               Cancelar
@@ -63,14 +82,12 @@ const doClick = () => {
 }
 const _deleteDiagnosis = async () => {
   try {
-
     let res = await deleteDiagnosis(props.deleteId)
     if (res?.statusText == 'OK') {
       message.success = res.data.Message
       message.err = ''
       location.reload()
     }
-
   } catch (error: any) {
     message.err = error.response.data.Message
     message.success = ''

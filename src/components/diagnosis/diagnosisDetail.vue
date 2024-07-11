@@ -1,6 +1,8 @@
 <template>
   <div class="container mt-4">
-    <a @click="router.back()" class="col-1 icon-arrow" title="Return"><i class="bi-arrow-left-square-fill"> </i></a>
+    <a @click="router.back()" class="col-1 icon-arrow" title="Return"
+      ><i class="bi-arrow-left-square-fill"> </i
+    ></a>
     <div class="card card-title">{{ title }}</div>
     <ul v-for="diag in diagnosis.values" :key="diag['diagnosis_id']">
       <li>Test:{{ ' ' + diag['test'] }}</li>
@@ -20,14 +22,26 @@
       <li v-if="diag['updated'] === null">Updated:{{ ' ' + diag['updated'] }}</li>
       <li v-else>Updated:{{ ' ' + new Date(diag['updated']).toLocaleString('pe-PE') }}</li>
       <li>
-        <button type="button" class="btn btn-sm btn-save mt-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button
+          type="button"
+          class="btn btn-sm btn-save mt-2"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+        >
           Receta y/o Recomendación
         </button>
       </li>
       <div>
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div
+          class="modal fade"
+          id="staticBackdrop"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
           <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
               <div class="modal-header">
@@ -35,20 +49,33 @@
                   Receta y/o recomendación para: {{ ' ' + diag['test'] }} -
                   {{ diag['interpretation'] }}
                 </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
               </div>
               <div class="modal-body">
                 <form @submit.prevent="_editTreatment" @keyup="_validData">
                   <!--treatment-->
                   <div class="col-auto">
-                    <textarea v-model="dataObject.treatment" type="textarea" class="form-control input-treatment"
-                      id="observation" placeholder="" />
+                    <textarea
+                      v-model="dataObject.treatment"
+                      type="textarea"
+                      class="form-control input-treatment"
+                      id="observation"
+                      placeholder=""
+                    />
                     <small>{{
                       dataObject.treatment.length + ' ' + 'de' + ' ' + 2083 + ' ' + 'caracteres'
                     }}</small>
-                    <small v-if="
-                      fields.validateTreatment === '' || fields.validateTreatment === 'Opcional'
-                    " class="text-alert-optional">
+                    <small
+                      v-if="
+                        fields.validateTreatment === '' || fields.validateTreatment === 'Opcional'
+                      "
+                      class="text-alert-optional"
+                    >
                       {{ fields.validateTreatment }}
                     </small>
                     <small v-else class="text-alert-error">{{ fields.validateTreatment }}</small>
@@ -80,11 +107,10 @@
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue'
 import type { _diagnosis } from '@/interfaces/interface'
-import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { editDiagnosis, getDiag } from '@/data/diagnosis'
 //import router from '@/router'
 import { fieldTreatment } from '@/validation/diagnosis'
-
 
 defineProps({
   title: { type: String, default: 'Diagnosis Details' }
@@ -157,7 +183,6 @@ const _editTreatment = async () => {
     console.log(error.response)
   }
 }
-
 </script>
 
 <style lang="css" scoped>

@@ -4,7 +4,6 @@
       <!--Form-->
       <div class="card card-search1">
         <div class="row row-search">
-
           <!--Search-->
           <div class="col-auto">
             <!--search mode 2-->
@@ -13,11 +12,16 @@
                 <div class="col-auto mt-2">Nombre o DNI.</div>
                 <div class="col-auto">
                   <i class="bi-search"></i>
-                  <input v-model="text" id="inputMode2" name="inputMode2" class="form-control form-control-sm search"
-                    type="search" />
+                  <input
+                    v-model="text"
+                    id="inputMode2"
+                    name="inputMode2"
+                    class="form-control form-control-sm search"
+                    type="search"
+                  />
                 </div>
-                <div class="col-auto ">
-                  <button type="submit" class="btn btn-sm  btn-search">Buscar</button>
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-sm btn-search">Buscar</button>
                 </div>
                 <!--<div class="col-auto">
                   <button v-if="success.length > 0 || err.length > 0" type="button" @click="getDataPages(1)"
@@ -25,7 +29,6 @@
                   <button v-else hidden type="button" @click="getDataPages(1)" class="btn-close btn-sm mt-2"
                     aria-label="Close"></button>
                 </div>-->
-
               </div>
             </form>
           </div>
@@ -34,24 +37,17 @@
             <small v-if="success.length > 0" class="text-success">{{ success }}</small>
             <small v-if="err.length > 0" class="text-danger">{{ err }}</small>
           </div>
-          <div v-if="success.length === 0" class=" mt-3">
+          <div v-if="success.length === 0" class="mt-3">
             <!--Add-->
-            Si eres nuevo registre su prueba de laboratorio tales como:
-            'LDH/DHL',
-            'GLUCOSA',
-            'COL. TOTAL',
-            'TRIGLICERIDOS',
-            'UREA',
-            'Co2',
-            'VCM',
-            'RDW ADE IDE',
-            'GGTP',
-            'TGO AST',
-            'TGP ALT',
-            'ACIDO URICO' y
-            'HEMOGLOBINA'
-            <a @click="openModalCreate" title="Registre aquí el resultado de su prueba clínico" type="button"
-              class="text-primary">
+            Si eres nuevo registre su prueba de laboratorio tales como: 'LDH/DHL', 'GLUCOSA', 'COL.
+            TOTAL', 'TRIGLICERIDOS', 'UREA', 'Co2', 'VCM', 'RDW ADE IDE', 'GGTP', 'TGO AST', 'TGP
+            ALT', 'ACIDO URICO' y 'HEMOGLOBINA'
+            <a
+              @click="openModalCreate"
+              title="Registre aquí el resultado de su prueba clínico"
+              type="button"
+              class="text-primary"
+            >
               Aquí<i class="bi-plus-square-fill"></i>
             </a>
           </div>
@@ -66,18 +62,28 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="search in searchDiagnosis.values" :key="search['diagnosis_id']" class="tbody-tr">
+            <tr
+              v-for="search in searchDiagnosis.values"
+              :key="search['diagnosis_id']"
+              class="tbody-tr"
+            >
               <td>
-                <RouterLink class="td-decoration" :to="'/diagnosis/' + search['patient']" title="Detail">
+                <RouterLink
+                  class="td-decoration"
+                  :to="'/diagnosis/' + search['patient']"
+                  title="Detail"
+                >
                   {{ search['patient'] }}
                 </RouterLink>
               </td>
             </tr>
           </tbody>
-
         </table>
       </div>
-      <DiagnosisCreate v-if="showModalCreate" :close-form-create="closeModalCreate"></DiagnosisCreate>
+      <DiagnosisCreate
+        v-if="showModalCreate"
+        :close-form-create="closeModalCreate"
+      ></DiagnosisCreate>
     </div>
   </div>
 </template>
@@ -86,14 +92,14 @@ import { onMounted, reactive, ref } from 'vue'
 import type { _diagnosis } from '@/interfaces/interface'
 import { getDiagnosis } from '@/data/diagnosis'
 import { RouterLink } from 'vue-router'
-import DiagnosisCreate from './diagnosisCreate.vue';
+import DiagnosisCreate from './diagnosisCreate.vue'
 defineProps({
   title: { type: String, default: 'Pacientes' }
 })
 onMounted(async () => {
   const diagnosisData = await getDiagnosis()
   if (diagnosisData?.statusText == 'OK') {
-    //patients   
+    //patients
     diagnosis.values = diagnosisData.data.patients
   }
   if (diagnosis.length > 0) {
@@ -148,7 +154,8 @@ const getSearchDiagnosis = () => {
         searchDiagnosis.values = arrayEmpty.values
         pagination.value = false
         success.value = ''
-        err.value = 'No se encontró, ningun registro para' + ' "' + text.value + '" ' + 'vuelva a intentar'
+        err.value =
+          'No se encontró, ningun registro para' + ' "' + text.value + '" ' + 'vuelva a intentar'
       }
     }
   }
@@ -180,7 +187,7 @@ const getDataPages = async (numPage: number) => {
   --bs-verde: #24b699;
   --bs-verdeOscuro: #2e9d86;
   --bs-madera: #fffae5;
-  --bs-maderaClaro: #FFF8DC;
+  --bs-maderaClaro: #fff8dc;
   --bs-anaranjadoClaro: #fffdf7;
   --bs-anaranjado: #ffcd5a;
   --bs-anaranjadoOscuro: #df7935;
@@ -193,7 +200,6 @@ const getDataPages = async (numPage: number) => {
   color: var(--bs-verde);
   font-size: 1.5rem;
   margin-left: 0.5rem;
-
 }
 
 .thead-tr {
@@ -213,6 +219,5 @@ const getDataPages = async (numPage: number) => {
   display: flex;
   align-items: end;
   width: auto;
-
 }
 </style>

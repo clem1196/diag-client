@@ -1,4 +1,6 @@
+<!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <template>
+
   <Line v-if="data.loaded === true" :data="data" :options="options" />
 </template>
 
@@ -16,6 +18,7 @@ import {
   Legend,
   PointElement
 } from 'chart.js'
+
 import { Line } from 'vue-chartjs'
 
 ChartJS.register(
@@ -38,6 +41,10 @@ export default {
   data() {
     return {
       data: {
+        //range
+        rangeValues: [],
+        //graphics
+
         loaded: false,
         labels: [''],
         datasets: [
@@ -46,7 +53,7 @@ export default {
             data: [0],
             borderColor: '#FFCA28 ',
             backgroundColor: '#FFCA28 ',
-            hidden: false
+            hidden: true
           },
           {
             label: 'p1',
@@ -74,7 +81,7 @@ export default {
             data: [0],
             borderColor: '#FFCA28  ',
             backgroundColor: '#FFCA28  ',
-            hidden: false
+            hidden: true
           },
           {
             label: 'result',
@@ -100,26 +107,26 @@ export default {
   methods: {
     async _getDiagnosis() {
       const diagnosisData = await getDiagnosis()
-      console.log(diagnosisData?.data)
+      // console.log(diagnosisData?.data)
       let sortRes: Array<_diagnosis> = []
       let sortRes1: Array<_diagnosis> = []
       const res = await diagnosisData?.data.results.filter(
         (p: _diagnosis) => p.patient === this.$route.params.name
       )
-
-      sortRes[0] = res.filter((t: _diagnosis) => t.test === 'LDH/DHL')[0]
-      sortRes[1] = res.filter((t: _diagnosis) => t.test === 'GLUCOSA')[0]
-      sortRes[2] = res.filter((t: _diagnosis) => t.test === 'COL. TOTAL')[0]
-      sortRes[3] = res.filter((t: _diagnosis) => t.test === 'TRIGLICERIDOS')[0]
-      sortRes[4] = res.filter((t: _diagnosis) => t.test === 'UREA')[0]
-      sortRes[5] = res.filter((t: _diagnosis) => t.test === 'Co2')[0]
-      sortRes[6] = res.filter((t: _diagnosis) => t.test === 'VCM')[0]
-      sortRes[8] = res.filter((t: _diagnosis) => t.test === 'RDW ADE IDE')[0]
-      sortRes[9] = res.filter((t: _diagnosis) => t.test === 'GGTP')[0]
-      sortRes[10] = res.filter((t: _diagnosis) => t.test === 'TGO AST')[0]
-      sortRes[11] = res.filter((t: _diagnosis) => t.test === 'TGP ALT')[0]
-      sortRes[12] = res.filter((t: _diagnosis) => t.test === 'ACIDO URICO')[0]
-      sortRes[13] = res.filter((t: _diagnosis) => t.test === 'HEMOGLOBINA')[0]
+      //console.log(res)
+      sortRes[0] = await res.filter((t: _diagnosis) => t.test === 'LDH/DHL')[0]
+      sortRes[1] = await res.filter((t: _diagnosis) => t.test === 'GLUCOSA')[0]
+      sortRes[2] = await res.filter((t: _diagnosis) => t.test === 'COL. TOTAL')[0]
+      sortRes[3] = await res.filter((t: _diagnosis) => t.test === 'TRIGLICERIDOS')[0]
+      sortRes[4] = await res.filter((t: _diagnosis) => t.test === 'UREA')[0]
+      sortRes[5] = await res.filter((t: _diagnosis) => t.test === 'Co2')[0]
+      sortRes[6] = await res.filter((t: _diagnosis) => t.test === 'VCM')[0]
+      sortRes[8] = await res.filter((t: _diagnosis) => t.test === 'RDW ADE IDE')[0]
+      sortRes[9] = await res.filter((t: _diagnosis) => t.test === 'GGTP')[0]
+      sortRes[10] = await res.filter((t: _diagnosis) => t.test === 'TGO AST')[0]
+      sortRes[11] = await res.filter((t: _diagnosis) => t.test === 'TGP ALT')[0]
+      sortRes[12] = await res.filter((t: _diagnosis) => t.test === 'ACIDO URICO')[0]
+      sortRes[13] = await res.filter((t: _diagnosis) => t.test === 'HEMOGLOBINA')[0]
 
       /*sortRes[0] = res.filter((t: _diagnosis) => t.test === "LDH/DHL")[0];
       sortRes[1] = res.filter((t: _diagnosis) => t.test === "COL. TOTAL")[0];
@@ -137,12 +144,12 @@ export default {
 
       for (let index = 0; index < sortRes.length; index++) {
         const element = sortRes[index]
-        console.log(element)
+        //console.log(element)
         if (element !== undefined) {
           sortRes1.push(element)
         }
       }
-      console.log(sortRes1)
+      //console.log(sortRes1)
       this.data.labels = sortRes1.map((row: _diagnosis) => row.test)
       this.data.datasets[0].data = sortRes1.map((row: _diagnosis) => row.pi)
       this.data.datasets[1].data = sortRes1.map((row: _diagnosis) => row.p1)
@@ -151,7 +158,9 @@ export default {
       this.data.datasets[4].data = sortRes1.map((row: _diagnosis) => row.pf)
       this.data.datasets[5].data = sortRes1.map((row: _diagnosis) => parseFloat(row.result))
       this.data.datasets[6].data = sortRes1.map((row: _diagnosis) => row.ideal)
-      //console.log(this.data.labels);
+
+      //console.log(this.data.rangeValues)
+      //console.log(sortRes1[12].interpretation)
     }
   },
   async mounted() {
@@ -161,3 +170,4 @@ export default {
   }
 }
 </script>
+<style lang="css" scoped></style>

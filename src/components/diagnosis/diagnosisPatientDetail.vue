@@ -3,7 +3,9 @@
     <!--LIST-->
     <div class="card mt-3 p-3">
       <div class="col-1">
-        <button @click="$router.replace('/diagnosis')" class="btn btn-salir" type="button">Salir</button>
+        <button @click="$router.replace('/diagnosis')" class="btn btn-salir" type="button">
+          Salir
+        </button>
       </div>
       <div v-if="$route.params.name !== undefined">
         <div v-if="diagnosis.values.length === 13" class="card card-title">
@@ -11,7 +13,6 @@
         </div>
         <div v-else class="card card-title">
           {{ $route.params.name + `(${diagnosis.values.length} de 13)` }}
-
         </div>
         <!--Form-->
         <div class="card card-search">
@@ -73,7 +74,7 @@
               <tr class="thead-tr">
                 <th hidden>
                   <i class="bi-filter"></i>
-                  <button @click="sortId" class="btn btn-sm " title="Id">Id</button>
+                  <button @click="sortId" class="btn btn-sm" title="Id">Id</button>
                 </th>
                 <th>
                   <i class="bi-filter"></i>
@@ -81,29 +82,33 @@
                 </th>
                 <th>
                   <i class="bi-filter"></i>
-                  <button @click="sortResult" class="btn btn-sm " title="Valor de la prueba clínica">Res</button>
+                  <button @click="sortResult" class="btn btn-sm" title="Valor de la prueba clínica">
+                    Res
+                  </button>
                 </th>
                 <th hidden>
                   <i class="bi-filter"></i>
-                  <button @click="sortRangeInitial" class="btn btn-sm " title="rango inicial">Ri</button>
+                  <button @click="sortRangeInitial" class="btn btn-sm" title="rango inicial">
+                    Ri
+                  </button>
                 </th>
                 <th hidden>
                   <i class="bi-filter"></i>
-                  <button @click="sortIdeal" class="btn btn-sm " title="Rango ideal">Ideal</button>
+                  <button @click="sortIdeal" class="btn btn-sm" title="Rango ideal">Ideal</button>
                 </th>
                 <th hidden>
                   <i class="bi-filter"></i>
-                  <button @click="sortRangeEnd" class="btn btn-sm " title="Rango final">Rf</button>
+                  <button @click="sortRangeEnd" class="btn btn-sm" title="Rango final">Rf</button>
                 </th>
 
                 <th>
                   <i class="bi-filter"></i>
-                  <button @click="sortInterpretation" class="btn btn-sm " title="Interpretación del resultado">
+                  <button @click="sortInterpretation" class="btn btn-sm" title="Interpretación del resultado">
                     Interp
                   </button>
                 </th>
                 <th>
-                  <button class="btn btn-sm ">Action</button>
+                  <button class="btn btn-sm">Action</button>
                 </th>
               </tr>
             </thead>
@@ -122,11 +127,11 @@
                   </RouterLink>
                   |
                   <a @click="openModalEdit(search['diagnosis_id'])" title="Edit">
-                    <i class="bi-pencil-fill size-pencil "></i>
+                    <i class="bi-pencil-fill size-pencil"></i>
                   </a>
                   |
                   <a @click="openModalDelete(search['diagnosis_id'])" title="Delete">
-                    <i class="bi-trash-fill size-trash "></i>
+                    <i class="bi-trash-fill size-trash"></i>
                   </a>
                 </td>
               </tr>
@@ -191,12 +196,18 @@
             </li>
           </ul>
         </nav>
-        <div class="card card-title">
-          Graphics
+        <div class="card card-title">Rangos</div>
+        <div>
+          <TestDhl></TestDhl>
         </div>
+        <div>
+          <TestGgtp></TestGgtp>
+        </div>
+        <div class="card card-title">Graphics</div>
         <div>
           <DiagnosisGraphics></DiagnosisGraphics>
         </div>
+
       </div>
       <DiagnosisAdd v-if="showModalAdd" :close-form-add="closeModalAdd"></DiagnosisAdd>
       <DiagnosisEdit v-if="showModalEdit" :close-form-edit="closeModalEdit" :edit-id="idSelected">
@@ -212,9 +223,11 @@ import type { _diagnosis } from '@/interfaces/interface'
 import { getDiagnosis } from '@/data/diagnosis'
 import { RouterLink, useRoute } from 'vue-router'
 import DiagnosisGraphics from '@/components/diagnosis/diagnosisGraphics.vue'
+import TestDhl from "@/components/RangeProgressBar/testDhl.vue";
 import DiagnosisAdd from '@/components/diagnosis/diagnosisAdd.vue'
 import DiagnosisEdit from '@/components/diagnosis/diagnosisEdit.vue'
 import DianosisDelete from '@/components/diagnosis/diagnosisDelete.vue'
+import TestGgtp from '../RangeProgressBar/testGgtp.vue'
 const route: any = useRoute()
 defineProps({
   title: { type: String, default: 'Detalles' }
@@ -224,13 +237,13 @@ onMounted(async () => {
     const diagnosisData = await getDiagnosis()
     if (diagnosisData?.statusText == 'OK') {
       //diagnosisByPatient
-      console.log(route.params.name)
+      //console.log(route.params.name)
       let diagnosisByPatientData = await diagnosisData?.data.results.filter(
         (element: _diagnosis) => element.patient === route.params.name
       )
       diagnosis.values = diagnosisByPatientData
     }
-    console.log(diagnosis)
+    // console.log(diagnosis)
     getDataPages(currentPage.value)
     color_td()
   }
@@ -269,7 +282,7 @@ const closeModalAdd = () => {
 }
 //edit
 const openModalEdit = (diagnosisid: number) => {
-  console.log(diagnosisid)
+  //console.log(diagnosisid)
   idSelected.value = diagnosisid
   showModalEdit.value = true
 }
@@ -278,7 +291,7 @@ const closeModalEdit = () => {
 }
 //delete
 const openModalDelete = (diagnosisid: number) => {
-  console.log(diagnosisid)
+  //console.log(diagnosisid)
   idSelected.value = diagnosisid
   showModalDelete.value = true
 }
@@ -319,7 +332,7 @@ const color_td = async () => {
     }
   }
 
-  console.log(typeof myColor[6].textContent)
+  //console.log(typeof myColor[6].textContent)
 }
 
 //print
@@ -340,7 +353,7 @@ const sortId = () => {
     return searchDiagnosisValues.sort(asc)
   } else {
     sortValue.value = true
-    console.log(sortValue)
+    //console.log(sortValue)
     return searchDiagnosisValues.sort(desc)
   }
 }
@@ -373,7 +386,7 @@ const sortResult = () => {
     return searchDiagnosisValues.sort(asc)
   } else {
     sortValue.value = true
-    console.log(sortValue)
+    // console.log(sortValue)
     return searchDiagnosisValues.sort(desc)
   }
 }
@@ -390,7 +403,7 @@ const sortRangeInitial = () => {
     return searchDiagnosisValues.sort(asc)
   } else {
     sortValue.value = true
-    console.log(sortValue)
+    //console.log(sortValue)
     return searchDiagnosisValues.sort(desc)
   }
 }
@@ -407,7 +420,7 @@ const sortIdeal = () => {
     return searchDiagnosisValues.sort(asc)
   } else {
     sortValue.value = true
-    console.log(sortValue)
+    //console.log(sortValue)
     return searchDiagnosisValues.sort(desc)
   }
 }
@@ -424,7 +437,7 @@ const sortRangeEnd = () => {
     return searchDiagnosisValues.sort(asc)
   } else {
     sortValue.value = true
-    console.log(sortValue)
+    // console.log(sortValue)
     return searchDiagnosisValues.sort(desc)
   }
 }
@@ -561,7 +574,7 @@ const getLastPage = () => {
   --bs-verde: #24b699;
   --bs-verdeOscuro: #2e9d86;
   --bs-madera: #fffae5;
-  --bs-maderaClaro: #FFF8DC;
+  --bs-maderaClaro: #fff8dc;
   --bs-anaranjadoClaro: #fffdf7;
   --bs-anaranjado: #ffcd5a;
   --bs-anaranjadoOscuro: #df7935;
@@ -572,8 +585,6 @@ const getLastPage = () => {
 
 td.colorBarra {
   color: white;
-
-
 }
 
 .btn.btn-salir {
@@ -606,7 +617,6 @@ td.colorBarra {
   align-items: end;
   width: auto;
   justify-content: space-evenly;
-
 }
 
 .form-switch.form-check {

@@ -6,7 +6,8 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import(/* webpackChunkName: "home" */ '@/components/diagnosis/diagnosisList.vue')
+      component: () =>
+        import(/* webpackChunkName: "home" */ '@/components/diagnosis/diagnosisList.vue')
     },
 
     {

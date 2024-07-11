@@ -1,20 +1,38 @@
 <template>
   <div class="container-fluid mt-3">
     <!-- Button trigger modal -->
-    <button type="button" id="btnEdit" hidden class="btn btn-primary" data-bs-toggle="modal"
-      data-bs-target="#staticBackdrop">
+    <button
+      type="button"
+      id="btnEdit"
+      hidden
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+    >
       Edit
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <!--<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>-->
-            <button @click="props.closeFormEdit" type="button" class="btn-close" data-bs-dismiss="modal"
-              aria-label="Close"></button>
+            <button
+              @click="props.closeFormEdit"
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <form @submit.prevent="_editDiagnosis" @keyup="_validData">
@@ -26,9 +44,16 @@
                 <!--patient-->
                 <div class="col-auto">
                   <label for="patient">Paciente</label>
-                  <input v-model="dataObject.patient" type="text" class="form-control input-size" id="patient" />
-                  <small v-if="fields.validatePatient === '' || fields.validatePatient === 'Opcional'"
-                    class="text-alert-optional">
+                  <input
+                    v-model="dataObject.patient"
+                    type="text"
+                    class="form-control input-size"
+                    id="patient"
+                  />
+                  <small
+                    v-if="fields.validatePatient === '' || fields.validatePatient === 'Opcional'"
+                    class="text-alert-optional"
+                  >
                     {{ fields.validatePatient }}
                   </small>
                   <small v-else class="text-alert-error">{{ fields.validatePatient }}</small>
@@ -51,11 +76,14 @@
                     </option>
                   </select>
 
-                  <small v-if="
-                    dataObject.test === '' ||
-                    dataObject.test.length === 0 ||
-                    dataObject.test === undefined
-                  " class="text-alert-error">
+                  <small
+                    v-if="
+                      dataObject.test === '' ||
+                      dataObject.test.length === 0 ||
+                      dataObject.test === undefined
+                    "
+                    class="text-alert-error"
+                  >
                     Requerido
                   </small>
                   <small v-else class="text-alert-optional"></small>
@@ -63,10 +91,17 @@
                 <!--result-->
                 <div class="col-auto">
                   <label for="result">Result</label>
-                  <input v-model="dataObject.result" type="text" class="form-control input-size" id="result" />
+                  <input
+                    v-model="dataObject.result"
+                    type="text"
+                    class="form-control input-size"
+                    id="result"
+                  />
 
-                  <small v-if="fields.validateResult === '' || fields.validateResult === 'Opcional'"
-                    class="text-alert-optional">
+                  <small
+                    v-if="fields.validateResult === '' || fields.validateResult === 'Opcional'"
+                    class="text-alert-optional"
+                  >
                     {{ fields.validateResult }}
                   </small>
                   <small v-else class="text-alert-error">{{ fields.validateResult }}</small>
@@ -74,7 +109,11 @@
                 <!--condition-->
                 <div class="col-auto">
                   <label for="condition">Condición</label>
-                  <select v-model="dataObject.condition" class="form-select select-size" id="condition">
+                  <select
+                    v-model="dataObject.condition"
+                    class="form-select select-size"
+                    id="condition"
+                  >
                     <option value="activo">Activo</option>
                     <option value="inactivo">Inactivo</option>
                   </select>
@@ -82,10 +121,17 @@
                 <!--observation-->
                 <div class="col-auto">
                   <label for="observation">Observación</label>
-                  <textarea v-model="dataObject.observation" type="text" class="form-control input-size"
-                    id="observation" placeholder="" />
-                  <small v-if="dataObject.observation !== null && dataObject.observation.length > 2083"
-                    class="text-alert-error">
+                  <textarea
+                    v-model="dataObject.observation"
+                    type="text"
+                    class="form-control input-size"
+                    id="observation"
+                    placeholder=""
+                  />
+                  <small
+                    v-if="dataObject.observation !== null && dataObject.observation.length > 2083"
+                    class="text-alert-error"
+                  >
                     No se aceptan mas caracteres
                   </small>
                 </div>
@@ -93,8 +139,12 @@
 
               <!--Editar-->
               <div class="modal-footer">
-                <button type="submit" class="btn btn-save m-2" data-bs-dismiss="modal">Actualizar</button>
-                <button @click="props.closeFormEdit" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-save m-2" data-bs-dismiss="modal">
+                  Actualizar
+                </button>
+                <button @click="props.closeFormEdit" class="btn btn-light" data-bs-dismiss="modal">
+                  Cancelar
+                </button>
               </div>
             </form>
 
@@ -111,7 +161,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 <script setup lang="ts">
@@ -119,9 +168,6 @@
 import { getDiagnosis, editDiagnosis, getDiag } from '@/data/diagnosis'
 import { onMounted, reactive } from 'vue'
 import type { _diagnosis } from '@/interfaces/interface'
-
-import { useRoute } from 'vue-router'
-import router from '@/router'
 import { fieldPatient, fieldResult } from '@/validation/diagnosis'
 //props
 const props = defineProps({
@@ -134,7 +180,7 @@ const props = defineProps({
     default: 0
   }
 })
-const route: any = useRoute()
+
 const diagnosis: Array<_diagnosis> = reactive([])
 const diagnosisOne: Array<_diagnosis> = reactive([])
 //Original data
@@ -227,19 +273,6 @@ const _editDiagnosis = async () => {
 const _validData = async () => {
   fields.validatePatient = await fieldPatient(dataObject.patient)
   fields.validateResult = await fieldResult(dataObject.result)
-}
-const cleanForm = async () => {
-  dataObject.patient = ''
-  dataObject.sex = 'F'
-  dataObject.test = 'LDH/DHL'
-  dataObject.result = '0.0'
-  dataObject.treatment = '0.0'
-  dataObject.condition = 'activo'
-  dataObject.observation = ''
-  message.success = ''
-  message.err = ''
-  message.warning = ''
-  await _validData()
 }
 </script>
 
